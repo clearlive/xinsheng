@@ -1,0 +1,232 @@
+{include file="home/header" title="充值"  /}
+
+<style>
+    h1 { background:#f3f3f3; color:#db4141; font-size:230%; padding:30px 3%; }
+    h3 { background:#f3f3f3; font-size:230%; padding:30px 3%; margin-top:50px; }
+    h2 { width:800px; margin:0 auto; padding-top:10px; }
+    h2 div { float:left; display:block;  margin:0 25px; background:#ffffff; font-size:230%;  height:100px; line-height:100px; margin-top:40px;  border-radius:10px; }
+    h2 input {  width:198px; text-align:center; border-radius:0;   }
+
+
+    ul.ui-choose { box-sizing: border-box; display: inline-block; border: 1px solid transparent; }
+    li { float:left; display:block; width:208px; text-align:center; margin:0 25px; background:#ffffff;  border:1px solid #e1e1e1; font-size:230%;height:100px; line-height:100px; margin-top:40px;  border-radius:10px;  }
+    .selected_li{ border:1px solid red;}
+    h4 { font-size:230%; padding:10px 5%; width:90%; }
+    h4 dl { width:100%;  border-bottom:1px solid #e3e3e3; padding:30px 0 30px 0; }
+
+
+    .paytype_selected{
+        background:url(__STATIC__/drhome/images/d2.png) no-repeat right center;
+        background-size:10%;
+    }
+
+    .paytype_normal{
+        background:url(__STATIC__/drhome/images/d1.png) no-repeat right center;
+        background-size:10%;
+    }
+
+
+    h4 dl dt { width:15%; }
+    h4 dl dt img { width:80%; border-radius:20px; }
+    h4 dl dd { width:85%; padding-top:10px; }
+    h4 dl dd p { font-size:100%; padding:5px 0 10px 0; }
+    h4 dl dd blockquote { font-size:90%; color:#bababa; }
+
+    .zff { width:100%; color:#ffffff; height:160px; line-height:160px; background:#db4141; font-size:300%; margin:0 auto; text-align:center; position:fixed; bottom:0;  }
+    .pay_success { padding-bottom:100px; float:left; }
+    .pay_success div { padding-top:0; width:100%; float:left; }
+    .pay_success .pay_success_ok { padding:60px 0 10px 0; }
+    .pay_success h2 { color:#7ed224; font-size:150%; padding-bottom:50px; }
+    .pay_success .pay_success_line { padding-bottom:10px; text-align:center; float:left; width:100%; height:90px; line-height:90px; margin-top:40px; }
+    .pay_success .pay_success_line span { border:1px solid #e34044; background:#ffffff; color:#e34044; padding:30px 100px; border-radius:15px; font-size:110%; }
+    .pay_success .pay_success_line span.s1 { border:1px solid #e34044; background:#e34044; color:#ffffff; }
+
+    .info{
+        font-size:200%;
+        margin: 5% 2%;
+        text-indent:4rem;
+        letter-spacing:5px;
+        color: #666;
+    }
+</style>
+
+
+<h1>选择充值金额</h1>
+<h2>
+    <ul class="ui-choose" id="uc_01">
+        {volist name="rech_jianyi" id="vo" key="key"}
+        <li data="{$vo}" {if $key == 1} class="selected_li" {/if} >{$vo}</li>
+        {/volist}
+        <!-- <li data="auto"><input id="money_auto" type="text" value="其他金额" maxlength="8" onfocus="if (value ==&#39;其他金额&#39;){value =&#39;&#39;}" onblur="check_auto_money();"></li> -->
+    </ul>
+</h2>
+
+<h3>支付方式选择</h3>
+<h4>
+
+
+    {volist name="payment" id="vo"}
+    <?php $voo = $vo['Configs'];?>
+    <?php foreach($voo as $kk=>$vv){?>
+    {if $vv != 0 &&  ( strstr($kk,'alipay') || strstr($kk,'alipaycode') || strstr($kk,'wxpay') ||  strstr($kk,'wxpaycode') || strstr($kk,'qqpay') || strstr($kk,'qqpaycode') || strstr($kk,'kjpay') || strstr($kk,'ylpay') ) }
+        <dl class="paytype paytype_selected" data="{$kk}">
+            
+                {if strstr($kk,'alipay')}
+                    <dt><img src="__STATIC__/drhome/images/zfb.png"></dt>
+                    <dd><p>{$vo['payName']}-宝支付</p><blockquote>使用支付宝支付</blockquote>
+                {elseif strstr($kk,'wxpay') /}
+                    <dt><img src="__STATIC__/drhome/images/weixin.png"></dt>
+                    <dd><p>{$vo['payName']}-微信</p><blockquote>使用支付微信</blockquote>
+                {elseif strstr($kk,'qqpay') /}
+                    <dt><img src="__STATIC__/drhome/images/qq.png"></dt>
+                    <dd><p>{$vo['payName']}-QQ</p><blockquote>使用支付QQ</blockquote>
+                {elseif strstr($kk,'alipaycode') /}
+                    <dt><img src="__STATIC__/drhome/images/zfb.png"></dt>
+                    <dd><p>{$vo['payName']}-宝支付扫码</p><blockquote>使用支付宝支付扫码</blockquote>
+                {elseif strstr($kk,'wxpaycode') /}
+                    <dt><img src="__STATIC__/drhome/images/weixin.png"></dt>
+                    <dd><p>{$vo['payName']}-微信扫码</p><blockquote>使用支付微信扫码</blockquote>
+                {elseif strstr($kk,'qqpaycode') /}
+                    <dt><img src="__STATIC__/drhome/images/qq.png"></dt>
+                    <dd><p>{$vo['payName']}-QQ扫码</p><blockquote>使用支付QQ扫码</blockquote>
+                {elseif strstr($kk,'kjpay') /}
+                    <dt><img src="__STATIC__/drhome/images/kuaijie.png"></dt>
+                    <dd><p>{$vo['payName']}-快捷</p><blockquote>使用支付快捷</blockquote>
+                {elseif strstr($kk,'ylpay') /}
+                <dt><img src="__STATIC__/drhome/images/yinlian.png"></dt>
+                    <dd><p>{$vo['payName']}-银联</p><blockquote>使用支付银联</blockquote>
+                {/if}
+            </dd>
+        </dl>
+    {/if}
+    <?php }?>
+    {/volist}
+    
+</h4>
+
+<div>
+        <p class="info">{:WSTConf("CONF.rechage_info")}</p>
+    </div>
+<div class="zff" id="chongzhi_button" onclick="chongzhi_now();">立即充值</div>
+
+
+<div id="zhezhao" class="md-overlay"></div>
+
+<script>
+    var auto_money='0.01';
+    var money='100';
+    var paytype='alipay';
+    var account_add_action_url='http://pay.mfchong.com/pay/index.php?routeurl=pay-juci-action&user_id=8953';
+
+    var account_mylist_url='https://mall.mfchong.com/index.php?routeurl=user-account-mylist';
+
+    $('#uc_01 li').click(
+        function(){
+            $('#uc_01 li').removeClass('selected_li');
+            $(this).addClass('selected_li');
+            money=$(this).attr('data');
+            if(money!='auto'){
+                $('#money_auto').val('其他金额');
+
+            }
+        }
+    );
+
+    $('.paytype').click(
+        function(){
+            $('.paytype').removeClass('paytype_selected').addClass('paytype_normal');
+            $(this).removeClass('paytype_normal').addClass('paytype_selected');
+            paytype=$(this).attr('data');
+        }
+    );
+
+    $('#uc_01 li').eq(0).click();
+    $('.paytype').eq(0).click();
+
+    function check_auto_money(){
+        var money_auto=$('#money_auto').val();
+        if (money_auto ==''){$('#money_auto').val('其他金额');}
+
+       
+    }
+
+    function chongzhi_now(){
+        if(money=='auto'){
+            money=$('#money_auto').val();
+            if(!checkit('money',money)){
+                $('#money_auto').val(auto_money);
+                money=auto_money;
+            }
+            if(money%10=='0'){
+                alert('尊敬的用户，请勿整数充值，请重新选择金额，如充值：'+(parseInt(money)+2)+'元');
+                return;
+            }
+        }
+
+        var param = 'bpprice='+ money + '&paytype='+paytype;
+		if(paytype == 'mcb_wxpay' || paytype == 'mcb_alipay'){
+			window.location.href="/home/users/addpaybdyf"+'?'+param;
+			return;
+		}
+        //window.location.href= ('pay.php?y=pay&jine='+ money + '&paytype='+ 0);
+        $.post("{:url('addpay')}",param,function(res){
+            //console.log(res);
+            if(res.status == -1){
+                alert(res.msg);
+            }else{
+                if(res.msg == 1){
+                    //console.log(res.data);
+                    location.href = res.data;
+                }
+            }
+        })
+
+    }
+
+    function chongzhi_now_callback(msg){
+        //alert(msg);
+        //alert(msg);
+        if(msg=='来源错误' || msg=='充值金额错误' || msg=='系统繁忙'){
+            alert(msg);
+            huanyuan();
+            return false;
+        }
+
+        //window.location.href=msg;
+        //return;
+        var weixin_data=eval(msg);
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', weixin_data,
+            function(res){
+                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                    show_div('pay_success');
+                    huanyuan();
+                }else{
+                    huanyuan();
+                }
+            }
+        );
+    }
+
+    function huanyuan(){
+        $('#chongzhi_button').html('立即充值');
+    }
+    function show_div(id){
+        $('#zhezhao').css('visibility','visible').css('opacity','9');
+        $('#'+id).css('visibility','visible');
+    }
+    function hidden_div(id){
+        $('#'+id).css('visibility','hidden');
+        $('#zhezhao').css('visibility','hidden').css('opacity','0');
+    }
+
+    function go_mylist(){
+        window.location.href=account_mylist_url;
+    }
+
+    function continue_chongzhi(){
+        hidden_div('pay_success');
+    }
+
+</script>
+</body></html>

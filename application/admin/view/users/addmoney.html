@@ -1,0 +1,26 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/users/users.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+
+<style type="text/css">
+   
+   .addmoney{
+      margin: 3%;
+   }
+</style>
+
+<div class="addmoney">
+      会员账号:<input type="text" name="loginName"  placeholder='账号/手机号码' id="loginName" class="query" />
+      充值金额:<input type="text" name="addnum" placeholder='充值金额' id="addnum" class="query" />
+      <input type="button" class="btn btn-blue" onclick="javascript:addmoney()" value="充值">
+      <br><br>
+      <p style="color: red">注意：提示成功后，金额会进入用户余额。增加资金填写正数，如100；减少金额请填写负数，如-100</p>
+
+</div>
+
+<script>
+
+</script>
+{/block}

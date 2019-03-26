@@ -1,0 +1,68 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/js/main.js?v={$v}" type="text/javascript"></script>
+<script>
+function enterLicense(){
+	location.href='{:Url("admin/index/enterLicense")}';
+}
+</script>
+{/block}
+{block name="main"}
+<div class="application-login-tips">
+    <p>您好，{:session('WST_STAFF.staffName')}，欢迎使用 {:WSTConf("CONF.mallName")}。 您上次登录的时间是 {:session('WST_STAFF.lastTime')} ，IP 是 {:session('WST_STAFF.lastIP')}</p>
+</div>
+<div id='application-version-tips' class='application-version-tips'>您有新的版本(<span id='application_version'>0.0.0</span>)可以下载啦~，<a id='application_down' href='' target='_blank'>点击</a>下载</div>
+<div id='application-accredit-tips' class='application-accredit-tips'>系统检测到您未获取授权，点此<a target='_blank' href='http://www.application.net/index.php?c=License&a=index'>获取系统授权码</a></div>                
+<table width='100%' border='0'>
+   <tr>
+     <td>
+		<table class="wst-form wst-summary">
+		  <tr>
+		     <td class='wst-summary-head' colspan='4'>数据统计</td>
+		  </tr>
+		  <tr>
+			 <td width="25%" align='right'>新增会员：</td>
+			 <td width="25%">{$object['tody']['userType0']}</td>
+			 <td width="25%" align='right'>总会员：</td>
+			 <td>{$object['tody']['userType1']}</td>
+		  </tr>
+		  <tr>
+		     <td align='right'>今日入金：</td>
+			 <td>{$object['tody']['rech']}</td>
+			 <td align='right'>总入金：</td>
+		     <td>{$object['tody']['allrech']}</td>
+		  </tr>
+		  <tr>
+		     <td align='right'>今日出金：</td>
+			 <td>{$object['tody']['cash']}<span style='margin-left:25px;'>（待审核：{$object['tody']['shenhecash']}）</span></td>
+			 <td align='right'>总出金：</td>
+		     <td>{$object['tody']['allcash']}</td>
+		  </tr>
+		</table>
+
+		<table class="wst-form wst-summary">
+		  <tr>
+		     <td class='wst-summary-head' colspan='4'>系统信息</td>
+		  </tr>
+		  
+		 
+		  <tr>
+		     <td align='right'>服务器操作系统：</td>
+			 <td>{$Think.PHP_OS}</td>
+			 <td align='right'>WEB服务器：</td>
+		     <td >{$Think.server.SERVER_SOFTWARE}</td>
+		  </tr>
+		  <tr>
+		     <td align='right'>PHP版本：</td>
+		     <td >{$Think.PHP_VERSION}</td>
+			 <td align='right'>MYSQL版本：</td>
+		     <td >{$object['MySQL_Version']}</td>
+		  </tr>
+		</table>
+	</td>
+	<td width='260' valign='top'>  
+		
+	</td>
+	</tr>
+</table>
+{/block}

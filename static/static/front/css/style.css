@@ -1,0 +1,237 @@
+/* CSS Document */
+
+
+
+html,.nav_bottom{
+  max-width: 1024px !important;
+  margin: 0 auto;
+}
+img { width:100%; max-width: 100%;}
+.banner { width:100%; position: relative;}
+
+.swiper-container, .swiper-slide {
+  width: 100%;
+  text-align:center;
+  /* height:168px; */
+}
+@media ( min-width:768px) 
+{
+.swiper-container, .swiper-slide {
+  width:100%;
+  text-align:center;
+  /* height:150px; */
+}
+}
+
+@media ( max-width:320px) 
+{
+.swiper-container, .swiper-slide {
+  width:100%;
+  text-align:center;
+  /* height:150px; */
+}
+
+}
+.pagination{position:absolute; left:0; text-align:center; bottom:-15px; width:100%; z-index:1; filter:alpha(opacity=80); -moz-opacity:0.8; -khtml-opacity: 0.8; opacity: 0.8;  }
+.swiper-pagination-switch{display:inline-block; width:10px; height:10px;border-radius:10px; background-color:#fff; box-shadow:0px 1px 2px #555 inset;margin:0 3px;cursor:pointer;}
+.swiper-active-switch{background-color:#000;}
+
+.er-info { background: #c70b22; height: 32px; color: #fff; padding: 0; line-height: 30px;}
+.er-time { padding: 10px 0; text-align: center; color: #6b6b6b;}
+.er-title { padding: 12px 0; background-color: #fafafa;  border-top: 1px solid #dedede; }
+.er-pic { border-top:10px solid #dedede;}
+.er-menu { background: #f3f3f3; border-top: 1px solid #e0e0e0; position: fixed;  bottom: 0; left: 0; margin-top: 50px;}
+.er-gmMenu { background: #f3f3f3;position: fixed;  bottom: 0; left: 0; }
+.er-gmTab { background: #f3f3f3;}
+.er-gmbutton { padding:10px 30px; text-align: center; border-radius: 4px; border: 1px solid #c4c4c4; color: #646464; font-size: 16px;}
+
+.er-phbd {background: #c70b23;}
+.ph-img {position:relative; bottom: 20px; left:-12px;  width: 26px; height: 26px; margin-left: 30px;}
+.er-tx { width:24px; height: 24px; border-radius: 50%;}
+.er-bzt { color:#fff; text-align: center;}
+.er-hsq { width: 24px; height: 24px; background: #9b9b9b; color: #fff; text-align: center; border-radius: 50%; float: left; margin-right: 5px; line-height: 24px;}
+.er-redq { width: 24px; height: 24px; background: #f7150f; color: #fff; text-align: center; border-radius: 50%; float: left; margin-right: 5px; line-height: 24px;}
+.er-kongshu { width: 24px; height: 24px; background: #fff;  border-radius: 50%; border:2px solid #dedede;}
+.er-danshu { width: 24px; height: 24px; background: #06c7ba;  border-radius: 50%; color: #fff; text-align: center; float: left; margin-right: 5px; line-height: 24px;}
+.er-wdtx { width:20%; height: 20%px; border-radius: 50%; margin: 30px auto 0 auto;}
+.er-wdline {  border-right:1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; padding:0;}
+.er-wdtb { width:24%;  margin: 20px auto;}
+.er-dl {display:block; padding-top: 80px;}
+.er-zc {display:block; padding-top: 100px;}
+.er-button {color: #c70b22;}
+.er-djall {background: #fafafa; border-top:1px solid #dedede;}
+.er-djcheck {width: 20px; height:20px; background: #dedede; border-radius: 50%; border:none;}
+
+
+@media ( max-width:640px) 
+{
+.ph-img {position:relative; bottom: 17px; left: 5px;  width: 24px; height: 24px; margin-left: 18px;}
+.er-dl {display:block; padding-top: 80px;}
+.er-zc {display:block; padding-top: 100px;}
+
+}
+
+@media ( max-width:320px) 
+{
+.ph-img {position:relative; bottom: 17px; left: -3px;  width: 24px; height: 24px; margin-left: 18px;}
+.er-dl {display:block; padding-top: 0;}
+.er-zc {display:block; padding-top: 60px;}
+
+}
+
+.btn-ds {
+  color: #fff;
+  background-color: #e72756;
+  border-color: #e72756;
+}
+.btn-ds:focus,
+.btn-ds.focus {
+  color: #fff;
+  background-color: #e72756;
+  border-color: #e72756;
+}
+.btn-ds:hover {
+  color: #fff;
+  background-color: #e72756;
+  border-color: #e72756;
+}
+.btn-ds:active,
+.btn-ds.active,
+.open > .dropdown-toggle.btn-ds {
+  color: #fff;
+  background-color: #e72756;
+  border-color: #e72756;
+}
+
+
+.nav1 {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+	
+}
+.nav1 > li {
+  position: relative;
+  display: block;
+}
+.nav1 > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+.nav1 > li > a:hover,
+.nav1 > li > a:focus {
+  text-decoration: none;
+	background: #c70b23;
+}
+.nav1 > li.disabled > a {
+  color: #fff;
+}
+.nav1 > li.disabled > a:hover,
+.nav1 > li.disabled > a:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+.nav1 .open > a,
+.nav1 .open > a:hover,
+.nav1 .open > a:focus {
+  border-color: #337ab7;
+}
+.nav1 .nav-divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.nav1 > li > a > img {
+  max-width: none;
+}
+
+.nav-tabs1 {
+border-bottom: 1px solid #940d0a;
+}
+.nav-tabs1 > li {
+  float: left;
+  margin-bottom: -1px;
+}
+.nav-tabs1 > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+}
+.nav-tabs1 > li > a:hover {
+}
+.nav-tabs1 > li.active > a,
+.nav-tabs1 > li.active > a:hover,
+.nav-tabs1 > li.active > a:focus {
+  color: #fff;
+  cursor: default;
+  border-bottom: 4px solid #940d0a;
+
+}
+.nav-tabs1.nav-justified {
+  width: 100%;
+  border-bottom: 1px solid #e9413e;
+}
+.nav-tabs1.nav-justified > li {
+  float: none;
+}
+.nav-tabs1.nav-justified > li > a {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.nav-tabs1.nav-justified > .dropdown .dropdown-menu {
+  top: auto;
+  left: auto;
+}
+@media (min-width: 768px) {
+  .nav-tabs1.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+  .nav-tabs1.nav-justified > li > a {
+    margin-bottom: 0;
+  }
+}
+.nav-tabs1.nav-justified > li > a {
+  margin-right: 0;
+  border-radius: 4px;
+}
+.nav-tabs1.nav-justified > .active > a,
+.nav-tabs1.nav-justified > .active > a:hover,
+.nav-tabs1.nav-justified > .active > a:focus {
+  border: 1px solid #ddd;
+}
+@media (min-width: 768px) {
+  .nav-tabs1.nav-justified > li > a {
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+  }
+  .nav-tabs1.nav-justified > .active > a,
+  .nav-tabs1.nav-justified > .active > a:hover,
+  .nav-tabs1.nav-justified > .active > a:focus {
+    border-bottom-color: #fff;
+  }
+}
+
+
+/* tab panel ����ʾEcharts  ͼ������   *//* bootstrap hack: fix content width inside hidden tabs */
+.tab-content > .tab-pane,.pill-content > .pill-pane 
+{    display: block;     /* undo display:none          */
+	height: 0;          /* height:0 is also invisible */
+	     overflow-y: hidden; /* no-overflow                */
+}
+.tab-content > .active,.pill-content > .active 
+{    height: auto;       /* let the content decide it  */
+} 
+/* bootstrap hack end */
+
+/* tab panel 不显示Echarts  图表问题   *//* bootstrap hack: fix content width inside hidden tabs */
+.tab-content > .tab-pane,.pill-content > .pill-pane {    display: block;     /* undo display:none          */    
+height: 0;          
+/* height:0 is also invisible */    
+overflow-y: hidden; /* no-overflow                */}
+.tab-content > .active,.pill-content > .active {    height: auto;       /* let the content decide it  */} /* bootstrap hack end */
+
+

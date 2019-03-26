@@ -1,0 +1,78 @@
+{include file="home/header" title="个人中心"  /}
+
+<style>
+.my_code{
+	vertical-align: top;
+    width: 20%;
+    border: 10px solid #FFE;
+    border-radius: 22px;
+}
+.sub div { 
+    width:25% !important;
+}
+</style>
+
+<div class="wrapper">
+
+
+    <div class="gezx">
+        <dl class="gface">
+            <dd><a href="javascript:logout();" class="logout">退出 </a> <a href="{:url('editPass')}" class="logout">修改密码  |</a> </dd>
+			<dd><img class="my_code" src="{$users.userPhoto}"></dd>
+            <dd>{$users.userName}</dd>
+            <dd>ID：{$users.userId}</dd>
+        </dl>
+        <!-- <ul> -->
+            <!-- <li style="background:none;width:50%"><p>累计获胜</p><p class="ff">{$users.allWin}</p></li> -->
+            <!-- <li><p>佣金</p><p class="ff">{$yongjin}</p></li> -->
+            <!-- <li style="width:50%"><p>余额</p><p class="ff">{$users.userMoney}</p></li> -->
+        <!-- </ul> -->
+        <div class="cz">
+            <!-- <a href="{:url('drrecharge')}">充值</a>
+            <a href="{:url('drcash')}">提现</a> -->
+        </div>
+        <!-- <div class="day">
+            <div>今日参与：{$jinri.canyu}</div>
+            <div>今日获胜：{$jinri.win}</div>
+            <div>今日失败：{$jinri.loss}</div>
+        </div> -->
+
+    </div>
+
+
+    <div class="gclass">
+        <a href="{:url('mall/queryOrderList')}" class="g1">我的订单</a>
+        <a href="{:url('mall/queryMallCart')}" class="g2">购物车</a>
+        <a href="javascript:;" class="g3">收货地址</a>
+
+    </div>
+    <div class="gclass">
+        <a href="{:url('qianbao')}" class="g4">我的钱包</a>
+        <!--<a href="{:url('gzh')}" class="g81">关注我</a> -->
+        <a href="{:url('index/index')}" class="g9">抢购商城</a>
+    </div>
+   
+</div>
+<div class="sub">
+        <div><a href="{:url('mall/index')}" class="a1 a_1">首页</a></div>
+        <div><a href="{:url('mall/queryOrderList')}" class="a5 a_5">订单</a></div>
+        <div><a href="{:url('mall/queryMallCart')}" class="a6 a_6">购物车</a></div> 
+        <div><a href="{:url('users/center')}" class="a4">我的</a></div>
+</div>
+
+
+<script>
+function logout(){
+    if(confirm("退出？")){
+        $.get("{:url('logout')}",function(){
+            alert('已退出');
+            window.location.href="{:url('login')}";
+        })
+    }
+    
+
+}
+</script>
+
+
+</body></html>

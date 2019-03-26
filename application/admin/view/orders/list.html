@@ -1,0 +1,45 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/orders/orders.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+
+
+
+
+<br/>
+订单编号：<input type="text" name="orderNo"  placeholder='订单编号' id="orderNo" class='j-ipt'/>&nbsp;&nbsp;
+用户：<input type="text" name="userinfo"  placeholder='用户名称/id/手机/昵称' id="userinfo" class='j-ipt'/>&nbsp;&nbsp;
+
+时间：<input type="text" style="margin:0px;vertical-align:baseline;" id="stacerateTime" name="stacerateTime" class="j-ipt" maxLength="20"  />
+      &nbsp;-&nbsp;
+      <input type="text" style="margin:0px;vertical-align:baseline;" id="endcerateTime" name="endcerateTime" class="j-ipt" maxLength="20"  />&nbsp;&nbsp;
+
+游戏：<select id='playtype' class='j-ipt'>
+          <option value='10000'>全部</option>
+          <option value='0'>没操作</option>
+          {volist name="playlist" id="vo"}
+          <option value='{$vo.playId}'>{$vo.playName}</option>
+          {/volist}
+       </select>&nbsp;&nbsp;
+
+   <button class="btn btn-blue" onclick='javascript:loadGrid(0)'>查询</button>
+   <div style='clear:both'></div>
+</div>
+<div id="maingrid"></div>
+
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+<script>
+
+$(function(){initGrid();})
+//时间选择器
+$('#stacerateTime').datetimepicker();
+$('#endcerateTime').datetimepicker();
+
+
+</script>
+{/block}

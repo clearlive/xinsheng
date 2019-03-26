@@ -1,0 +1,203 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>波动程序已经开启</title>
+    <script src="/static/js/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>
+      波动已经打开，请勿关闭此页面。
+    </h1>
+    <h3 class="tips">开启时间：<em class="time">0</em></h3>
+    <ul>
+      <li class="hangqing">
+        <b>产品行情更新：</b>成功[<em class="success">0</em>]，失败[<em
+          class="error"
+          >0</em
+        >]，更新时间[<em class="time">0</em>]
+      </li>
+      <li class="budans">
+        <b>补单更新：</b>成功[<em class="success">0</em>]，失败[<em
+          class="error"
+          >0</em
+        >]，更新时间[<em class="time">0</em>]
+      </li>
+      <li class="addorders">
+        <b>自动下单：</b>成功[<em class="success">0</em>]，失败[<em
+          class="error"
+          >0</em
+        >]，更新时间[<em class="time">0</em>]
+      </li>
+      <li class="drrebate">
+        <b>自动下单：</b>成功[<em class="success">0</em>]，失败[<em
+          class="error"
+          >0</em
+        >]，更新时间[<em class="time">0</em>]
+      </li>
+    </ul>
+
+    <script type="text/javascript">
+      $(".tips .time").html(getNowFormatDate());
+
+      var dataisclose = 0;
+      var orderisclose = 0;
+      var allotisclose = 0;
+      var add_orderclose = 0;
+      var res_drrebate = 0;
+
+      setInterval("datanewisclose()", 10000);
+      setInterval("ordernewisclose()", 60000); //补单
+      setInterval("auto_addorder()", 10000); //下单
+      setInterval("drrebate()", 30000); //夺宝代理结算
+
+      //********数据更新*********//
+      function datanewisclose() {
+        if (dataisclose == 0) {
+          flash_product();
+        }
+      }
+
+      function flash_product() {
+        dataisclose = 1;
+
+        $.ajax({
+          url: "/home/api/getdata",
+          data: "",
+          type: "get",
+          dataType: "text",
+          beforeSend: function() {},
+          success: function(e) {
+            var success = $(".hangqing .success").html();
+            $(".hangqing .success").html(parseInt(success) + 1);
+            $(".hangqing .time").html(getNowFormatDate());
+            dataisclose = 0;
+          },
+          error: function(e) {
+            var error = $(".hangqing .error").html();
+            $(".hangqing .error").html(parseInt(error) + 1);
+            $(".hangqing .time").html(getNowFormatDate());
+            dataisclose = 0;
+          }
+        });
+      }
+      //********补单*********//
+      function ordernewisclose() {
+        if (orderisclose == 0) {
+          flash_order();
+        }
+      }
+
+      function flash_order() {
+        orderisclose = 1;
+        $.ajax({
+          url: "/home/api/budan",
+          data: "",
+          type: "get",
+          dataType: "text",
+          beforeSend: function() {},
+          success: function(e) {
+            var success = $(".budans .success").html();
+            $(".budans .success").html(parseInt(success) + 1);
+            $(".budans .time").html(getNowFormatDate());
+            orderisclose = 0;
+          },
+          error: function(e) {
+            var error = $(".budans .error").html();
+            $(".budans .error").html(parseInt(error) + 1);
+            $(".budans .time").html(getNowFormatDate());
+            orderisclose = 0;
+          }
+        });
+      }
+
+      //********订单对冲*********//
+      function auto_addorder() {
+        if (allotisclose == 0) {
+          allot_addorder();
+        }
+      }
+
+      function allot_addorder() {
+        allotisclose = 1;
+        $.ajax({
+          url: "/home/api/auto_addorder",
+          data: "",
+          type: "get",
+          dataType: "text",
+          beforeSend: function() {},
+          success: function(e) {
+            var success = $(".addorders .success").html();
+            $(".addorders .success").html(parseInt(success) + 1);
+            $(".addorders .time").html(getNowFormatDate());
+            allotisclose = 0;
+          },
+          error: function(e) {
+            var error = $(".addorders .error").html();
+            $(".addorders .error").html(parseInt(error) + 1);
+            $(".addorders .time").html(getNowFormatDate());
+            allotisclose = 0;
+          }
+        });
+      }
+
+      //********订单对冲*********//
+      function drrebate() {
+        if (res_drrebate == 0) {
+          allot_drrebate();
+        }
+      }
+
+      function allot_drrebate() {
+        res_drrebate = 1;
+        $.ajax({
+          url: "/home/api/drrebate",
+          data: "",
+          type: "get",
+          dataType: "text",
+          beforeSend: function() {},
+          success: function(e) {
+            var success = $(".drrebate .success").html();
+            $(".drrebate .success").html(parseInt(success) + 1);
+            $(".drrebate .time").html(getNowFormatDate());
+            res_drrebate = 0;
+          },
+          error: function(e) {
+            var error = $(".drrebate .error").html();
+            $(".drrebate .error").html(parseInt(error) + 1);
+            $(".drrebate .time").html(getNowFormatDate());
+            res_drrebate = 0;
+          }
+        });
+      }
+
+      //setInterval("window.location.reload();",1000*60*20);
+
+      function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+          month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+          strDate = "0" + strDate;
+        }
+        var currentdate =
+          date.getFullYear() +
+          seperator1 +
+          month +
+          seperator1 +
+          strDate +
+          " " +
+          date.getHours() +
+          seperator2 +
+          date.getMinutes() +
+          seperator2 +
+          date.getSeconds();
+        return currentdate;
+      }
+    </script>
+  </body>
+</html>

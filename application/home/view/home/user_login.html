@@ -1,0 +1,158 @@
+{extend name="home/base" /}
+{block name="title"}用户登录-{:WSTConf('CONF.mallName')}{__block__}{/block}
+{block name="css"}
+<link rel="stylesheet" href="__STATIC__/drhome/css/user_login.css">
+<link rel="stylesheet" href="__STATIC__/drhome/css/login.css">
+<style type="text/css">
+
+</style>
+
+{/block}
+
+
+{block name="main"}
+
+
+<!-- <div class="m-simpleHeader" id="dvHeader">
+    <a href="javascript:history.back(-1);" data-pro="back" data-back="true" class="m-simpleHeader-back"><i style="color:red" class="ico ico-back"></i></a>
+    <h1 style="color:red">用户登录</h1>
+</div> -->
+<div class="m-login">
+
+
+    <div class="m-login-tips" id="tips">
+		<img style="margin: 0 auto; width: 60%;" src="__STATIC__/static/mallImg/login.png" alt="" srcset="">
+	</div>
+	
+
+    <div class="zzanniu">
+		<div class="m-login-form w-form">
+			<div class="w-form-item m-login-form-account w-inputBar w-bar">
+				<div class="w-bar-label">
+					<i class="iconfont"></i>
+				</div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+					<input placeholder="帐号登录" autocapitalize="off" data-pro="input" class="w-bar-input" type="text" name="zhanghao" value="" id="loginName">
+				</div>
+			</div>
+			<div class="w-form-item m-login-form-password w-inputBar w-bar">
+				<div class="w-bar-label">
+					<i class="iconfont"></i>
+				</div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+					<input placeholder="请输入密码" autocapitalize="off" data-pro="input" class="w-bar-input" type="password" name="mima" value="" id="loginPwd">
+				</div>
+			</div>
+			<div class="m-login-menu" id="autoCmpl" style="display:none;">
+			</div>
+		</div>
+		<div class="m-login-tips-bottom" id="tipsBottom">
+		</div>
+		<div class="m-login-submit">
+			<button class="w-button w-button-main" data-pro="submit" onclick="frmsubmit()" id="btnLogin">登 录</button>
+		</div>
+		<div class="m-login-link">
+			<a href="{:url('Users/regist')}" id="aReg">马上注册</a>
+			<a href="{:url('Users/editPass')}" id="regist" class="aside">忘记密码？</a>
+		</div>
+	</div>
+
+
+
+
+
+</div>
+
+
+
+
+<button class="w-button w-button-round w-button-backToTop" style="display:none;" id="backToTop" onclick="window.scrollTo(0, 0);">返回顶部</button>
+
+
+
+{/block}
+{block name="js"}
+
+<script type="text/javascript">
+	
+
+	
+	
+
+		 $(function(){
+	        $("input").focus(function(){
+	            $("h4").html("");
+	        });
+	        var s = $("#msg").val();
+	        if(s != "" && s == 2){
+	        	alert("账号被冻结,请联系管理员");
+	        }
+	        if(s != "" && s == 3){
+	        	alert("账号或密码输入错误");
+	        }
+	    })
+
+	    //点击登录
+	    function frmsubmit()
+			{
+
+				if(document.getElementById('loginName').value.length==0 )
+				{
+					alert('您需要完整填写用户名');
+					//$("#uidspan").html("<font color='red' size='4px'>您需要完整填写用户名!</font>");
+					return;
+				}
+				if(document.getElementById('loginPwd').value.length==0 )
+				{
+					alert('您需要完整填写密码');
+					//$("#upwdspan").html("<font color='red' size='4px'>您需要完整填写密码!</font>");
+					return;  
+				}
+				var remember = $("#remember").is(":checked");
+
+				
+				var params = WST.getParams('.w-bar-input');
+				var typ = 1;
+				params.typ = typ; 
+				var ll = WST.msg('正在处理数据，请稍后...',{time:600000});
+				$.post(WST.U('home/users/checkLogin'),params,function(data,textStatus){
+					var json = WST.toJson(data);
+				
+					if(json.status=='1'){
+						if(typ==2){
+							location.href=WST.U('home/shops/index');
+						}else if(typ==1){
+							location.href=WST.U('home/mall/index');
+						}else{
+							parent.location.reload();
+						}
+					}else{
+						layer.close(ll);
+						WST.msg(json.msg, {icon: 5});
+						WST.getVerify('#verifyImg');
+					}
+					
+				});
+				return true;
+				
+			}
+	    
+	   /*  function success(){
+	        if(frmtel('#login_phone')&&frmpwd('#login_mima')){
+	            window.location.href="index.html";
+	        }
+	    } */
+	    
+	    $(document).on('focus','input',function(e){
+	    	$("#upwdspan").html("");	
+	    	$("#uidspan").html("");
+	    });
+
+	
+
+
+</script>
+
+{/block}

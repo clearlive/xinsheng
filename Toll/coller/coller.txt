@@ -1,0 +1,38 @@
+
+auto_addorder.sh
+budan.sh
+drrebate.sh
+getdata.sh
+
+四个文件里面的域名  改为自己的域名
+
+更目录创建coller文件夹，将三个文件放到coller文件夹下
+
+
+cd /coller
+
+-----------------------------------------启动--------------
+nohup sh auto_addorder.sh &
+ctrl+C(退出)
+
+nohup sh budan.sh &
+ctrl+C(退出)
+
+nohup sh drrebate.sh &
+ctrl+C(退出)
+
+nohup sh getdata.sh &
+ctrl+C(退出)
+
+-----------------------------------------停止--------------
+
+ps -ef |grep auto_addorder.sh
+
+获取此进程
+
+kill -9 此进程
+
+其他三个一样；
+
+
+

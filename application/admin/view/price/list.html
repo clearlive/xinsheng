@@ -1,0 +1,32 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/price/price.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+
+用户：<input type="text" name="userName"  placeholder='用户名称/id/手机/昵称' id="userName" class='j-ipt'/>
+时间：<input type="text" style="margin:0px;vertical-align:baseline;" id="stacerateTime" name="stacerateTime" class="j-ipt" maxLength="20"  />
+      &nbsp;-&nbsp;
+      <input type="text" style="margin:0px;vertical-align:baseline;" id="endcerateTime" name="endcerateTime" class="j-ipt" maxLength="20"  />&nbsp;&nbsp;
+
+<button class="btn btn-blue" onclick='javascript:loadGrid(0)'>查询</button>
+<span style="color:red"> 默认为周一 05点到现在</span>
+<div style='clear:both'></div>
+</div>
+<div id="maingrid"></div>
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+<script>
+$(function(){
+	initGrid();
+})
+
+//时间选择器
+$('#stacerateTime').datetimepicker();
+$('#endcerateTime').datetimepicker();
+
+</script>
+{/block}

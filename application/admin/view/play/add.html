@@ -1,0 +1,57 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/webuploader/webuploader.css?v={$v}" />
+{/block}
+{block name="js"}
+<script src="__ADMIN__/play/plays.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<form id="userForm" autocomplete="off" >
+<table class='wst-form wst-box-top'>
+  <tr>
+      
+       <tr>
+          <th>游戏名称：</th>
+          <td>
+              <input type="text" class="ipt" id="playName" name="playName" value="{$data['playName']?$data['playName']:''}" />
+          </td>
+       </tr>
+
+       <tr>
+          <th>游戏代码：</th>
+          <td>
+              <input type="text" class="ipt" id="playCode" name="playCode" value="{$data['playCode']?$data['playCode']:''}" />
+          </td>
+       </tr>
+
+       <tr>
+          <th>是否使用：</th>
+          <td>
+              <input type="text" class="ipt" id="playStatus" name="playStatus" value="{$data['playStatus']?$data['playStatus']:''}" />
+              <p>输入1则使用，0 则不使用</p>
+          </td>
+       </tr>
+       
+
+       
+  
+  <tr>
+     <td colspan='2' align='center'>
+       <input type="hidden" class="ipt" id="playId" name="playId" value="{$data['playId']?$data['playId']:'0'}" />
+          
+       <input type="submit" value="提交" class='btn btn-blue' />
+       <input type="button" onclick="javascript:history.go(-1)" class='btn' value="返回" />
+     </td>
+  </tr>
+</table>
+</form>
+<script>
+  var posturl = "{:url('selectuser')}";
+
+$(function(){editInit()});
+
+</script>
+
+{/block}
+

@@ -1,0 +1,41 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/cashdraws/cashdraws.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+
+提现单号：<input type="text" name="cashNo"  placeholder='提现单号' id="cashNo" class='j-ipt'/>
+用户：<input type="text" name="userName"  placeholder='用户名称/id/手机/昵称' id="userName" class='j-ipt'/>
+
+时间：<input type="text" style="margin:0px;vertical-align:baseline;" id="stacerateTime" name="stacerateTime" class="j-ipt" maxLength="20"  />
+      &nbsp;-&nbsp;
+      <input type="text" style="margin:0px;vertical-align:baseline;" id="endcerateTime" name="endcerateTime" class="j-ipt" maxLength="20"  />&nbsp;&nbsp;
+
+
+提现状态：<select id='cashSatus' class='j-ipt'>
+          <option value='-1'>全部</option>
+          <option value='0'>待处理</option>
+          <option value='1'>已通过</option>
+          <option value='2'>已拒绝</option>
+       </select>
+<button class="btn btn-blue" onclick='javascript:loadGrid(0)'>查询</button>
+<div style='clear:both'></div>
+</div>
+<div id="maingrid"></div>
+
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+
+<script>
+$(function(){
+	initGrid();
+})
+//时间选择器
+$('#stacerateTime').datetimepicker();
+$('#endcerateTime').datetimepicker();
+
+</script>
+{/block}

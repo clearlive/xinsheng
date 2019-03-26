@@ -1,0 +1,57 @@
+{include file="home/header" title="我的团队"  /}
+<style>
+.tabs li {
+    width: 50% !important;
+}
+.sons .sonsp{
+	font-size: 200%;
+}
+.sons{
+	margin: 1.5rem;
+}
+dl.tx { width:96%; padding:50px 2%; font-size:200%; border-bottom:1px solid #e2e2e2; }
+dl.tx dt { width:60%; }
+dl.tx dt p { color:#212121; line-height:50px; padding-bottom:7px; }
+dl.tx dt blockquote { color:#999999; padding-bottom:7px; }
+dl.tx dd { width:40%; text-align:right; font-size:150%; padding-top:17px; }
+dl.tx dd.t { color:#e34145; }
+</style>
+
+<div class="">
+	<div class="tabs" style="margin-top:0;">
+		 <li>
+            <a href="{:url('myteam',array('type'=>1))}" {if $type == 1} class="current" {/if}>我的客户</a>
+        </li>
+        <li>
+            <a href="{:url('myteam',array('type'=>2))}" {if $type == 2} class="current" {/if}>我的代理商</a>
+        </li>
+	</div>
+</div>
+
+<div class="sons">
+	{volist name="list" id="vo"}
+	
+	<dl class="tx">
+	    <dt><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$vo.userName}</font></font></p><blockquote><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$vo.createTime}</font></font></blockquote></dt>
+		{if $type == 1}
+	    <dd class="t"><font style="vertical-align: inherit;"><a href="{:url('upuser',array('uid'=>$vo['userId']))}"><font style="vertical-align: inherit;">升级为代理商</font></a></font></dd>
+	    {elseif $type == 2 /}
+	    <dd class="t"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">比例：{$vo.percent}%</font></font></dd>
+	    {/if}
+	    <br><br><br><br>
+		<p style="font-size:120%">今日流水 {$vo.todyls} 历史流水：{$vo.allls} </p>
+	</dl>
+	
+		
+	{/volist}
+</div>
+
+	<div class="sub">
+	    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+	    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+	    <!-- <div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div> -->
+	    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+	</div>
+
+</body></html>
+

@@ -1,0 +1,135 @@
+{extend name="base" /}
+{block name="main"}
+<script src="__ADMIN__/order_hebing/order_hebing.js?v={$v}" type="text/javascript"></script>
+<div style='margin:10px;'>
+  <div class='order-box'>
+     
+   </div>
+   <!-- 订单信息 -->
+   <div class='order-box'>
+      <div class='box-head'>订单信息</div>
+      <table class='wst-form'>
+         <tr>
+           <th width='100'>订单编号：</th>
+           <td>{$object['info']['hbid']}</td>
+         </tr>
+
+
+         <tr>
+            <th>快递公司：</th>
+            <td>{$object['info']['exname']}</td>
+         </tr>
+         <tr>
+            <th>快递号：</th>
+            <td>{$object['info']['exdanhao']}</td>
+         </tr>
+         
+         
+      </table>
+   </div>
+   
+   <!-- 收货人信息 -->
+   <div class='order-box'>
+      <div class='box-head'>收货人信息</div>
+      <table class='wst-form'>
+         <tr>
+           <th width='100'>收货人：</th>
+           <td>{$object["address"]['username']}</td>
+         </tr>
+         <tr>
+           <th>收货地址：</th>
+           <td>{$object["address"]['address']}</td>
+         </tr>
+         <tr>
+            <th>联系方式：</th>
+            <td>{$object["address"]['phone']}</td>
+         </tr>
+
+         {if $object['info']['static'] == 1}
+         <tr>
+            <th></th>
+            <td> <a class='btn btn-blue' href="javascript:shouhuo(<?=(int)$object['info']['hbid']?>);">确认收货</a></td>
+         </tr>
+         
+         {/if}
+      </table>
+   </div>
+   <!-- 商品信息 -->
+   <div class='order-box'>
+       <div class='box-head'>商品清单</div>
+       <div class='goods-head'>
+          <div class='goods'>商品</div>
+          <div class='price'>单价</div>
+          <div class='num'>数量</div>
+          <div class='t-price'>总价</div>
+       </div>
+       <div class='goods-item'>
+         
+          <div class='goods-list'>
+             {volist name='$object["orderlist"]' id='vo2'}
+             <div class='item'>
+            <div class='goods'>
+                <div class='img'>
+                    <a href='{:Url("home/goods/detail","id=".$vo2["goodsId"])}' target='_blank'>
+                  <img src='__ROOT__/{$vo2["goodsImg"]}' width='80' height='80' title='{$vo2["goodsName"]}'/>
+                  </a>
+                </div>
+                <div class='name'>{$vo2["goodsName"]}</div>
+                <div class='spec'></div>
+            </div>
+            <div class='price'>¥{$vo2['shopPrice']}</div>
+            <div class='num'>{$vo2['orderNum']}</div>
+            <div class='t-price'>¥{$vo2['shopPrice']*$vo2['orderNum']}</div>
+            <div class='f-clear'></div>
+             </div>
+             {/volist}
+          </div>
+       </div>
+       <div class='goods-footer'>
+          <div class='goods-summary' style='text-align:right'>
+             <div class='summary'>商品总金额：¥<span>{$object['info']['zongjia']}</span></div>
+             <div class='summary'>运费：¥<span></span>{$object['info']['fee']}</div>
+             
+             
+          </div>
+       </div>
+
+   </div>
+{if $object['info']['static'] == 0}
+   <div class='order-box'>
+   发货
+     <form id="userForm" autocomplete="off" >
+      <table class='wst-form wst-box-top'>
+        <tr>
+            <th width='150'>快递公司<font color='red'>*</font>：</th>
+            <td width='370'>
+                <input type="text" class="ipt" id="exname" name="exname"  />
+            </td>
+        </tr>
+        <tr>
+            <th width='150'>快递单号<font color='red'>*</font>：</th>
+            <td width='370'>
+                <input type="text" class="ipt" id="exdanhao" name="exdanhao"  />
+            </td>
+        </tr>
+        <td colspan='2' align='center'>
+           <input type="hidden" name="id" id="hbid" class="ipt" value="<?=(int)$object['info']['hbid']?>" />
+           <input type="submit" value="提交" class='btn btn-blue' />
+           <a href="javascript:;" onclick="jujue(<?=(int)$object['info']['hbid']?>)"> 拒绝 </a>
+         </td>
+      </table>
+     </form>
+
+   </div>
+
+{/if}
+   <div class='wst-footer'><input type='button' value='返回' class='btn' onclick='javascript:history.go(-1)'></div>
+<div>
+
+<script>
+
+$(function(){editInit()});
+
+</script>
+
+{/block}

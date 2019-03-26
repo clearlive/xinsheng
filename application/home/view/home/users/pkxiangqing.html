@@ -1,0 +1,49 @@
+{include file="home/header" title="夺宝记录"  /}
+
+<div class="wrapper">
+    <div class="pkname">
+        <p>开奖期号：20{$ssc.issue}</p>
+        <p>
+            开奖结果：{$ssc.balls} ( {$ssc.isxiao} | {$ssc.isdan} | {$ssc.four} )			</p>
+    </div>
+    <div class="tit"></div>
+
+
+    <div class="bok">
+        <p>订单编号：{$dingdan.orderNo}</p>
+        <p>匹配数量：{$duishou['orderNum']}</p>
+        <div class="pklist">
+
+            
+
+
+            <div class="div_1">
+                <div class="ddd">
+                    <div class="hh"></div>
+                    <div class="shuzi">
+                        {$dd_type}						</div>
+                </div>
+                <p>{:substr($dingdan.userName,0,3)}****{:substr($dingdan.userName,-4)}</p>
+                
+
+            </div>
+
+
+            <div class="div_2">VS</div>
+
+                        <div class="div_3">
+                <div class="ddd">
+                    <div class="hh"></div>
+                    <div class="shuzi">
+                        {$ds_type}						</div>
+                </div>
+                <p>{:substr($duishou.userName,0,3)}****{:substr($duishou.userName,-4)}</p>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</body></html>

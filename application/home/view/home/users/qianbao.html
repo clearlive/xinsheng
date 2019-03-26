@@ -1,0 +1,38 @@
+{include file="home/header" title="钱包"  /}
+
+
+	<style>
+		h1 , h2 , h3 , h4 , h5 .more { width:94%; overflow:hidden; padding:0 3%;}
+		.more { text-align:right; background:#f7f8f8; padding:15px 3%;  width:94%;height:60px; line-height:60px; }
+		.more a { color:#db4141; text-shadow:2px 2px 2px #ffffff; }
+		h1 {  color:#db4141; font-size:1000%; font-family:Arial; text-align:center; padding:15% 3% 0 3%; }
+		h2 {  color:#db4141; font-size:200%; text-align:center; padding:15px 3% 0 3%; }
+		h6 {  color:#db4141; font-size:200%; text-align:center; padding:25px 3% 0 3%; }
+		h3 { width:600px; margin:10% auto 0 auto; }
+		h3 a { display:block; color:#ffffff; font-size:300%; background:#db4141; width:600px; text-align:center; height:80px; line-height:80px; padding:20px 0; border-radius:30px; }
+		h4 { width:600px; margin:5% auto 0 auto; }
+		h4 a { display:block; color:#666666; font-size:300%; background:#e4e4e4; width:600px; height:70px; line-height:70px;text-align:center; padding:20px 0; border-radius:30px; }
+		h5 { color:#1296db; font-size:200%; text-align:center; margin-top:8%; }
+		h5 a { color:#1296db; padding:3% ;  }
+	</style>
+
+	<div class="more"><a href="{:url('getUserFlowing')}">明细</a></div>
+	<h1>{$users.userMoney}</h1>
+    <h2>账户余额（元）</h2>
+		
+    <h3><a href="{:url('drrecharge')}">充值</a></h3>
+    <h4><a href="{:url('drcash')}">提现</a></h4>
+	
+    <!-- <h5><a  href="{:url('mybank')}">银行卡管理</a></h5> -->
+
+
+	<div class="sub">
+	    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+	    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+	    <!-- <div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div>  -->
+	    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+	</div>
+
+</body></html>
+
+

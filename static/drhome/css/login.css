@@ -1,0 +1,243 @@
+.m-login {
+	padding-top: 40px;
+}
+
+.m-login-noActionbar {
+	padding-top: 0;
+}
+
+.m-login-form {
+	background-color: #fff;
+	margin: 15px 10px 0;
+	position: relative;
+	z-index: 2;
+}
+
+.m-login-form .w-form-item {
+	border: 1px solid #D5D5D5;
+	height: 45px;
+	font-size: 14px;
+	line-height: 45px;
+}
+
+.m-login-form-account {
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin: 0;
+	margin-bottom: -1px;
+}
+
+.m-login-form-password {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	margin: 0;
+}
+
+.m-login-form .w-form-name {
+	width: 62px;
+}
+
+.m-login-form .w-input-input {
+	border-width: 0;
+	box-shadow: none;
+	font-size: 14px;
+	padding: 0;
+	width: 220px;
+	font-size: 14px;
+}
+
+.m-login-form .w-input-placeholder {
+	padding: 0;
+}
+
+.m-login-submit {
+	margin: 15px 10px 10px;
+}
+
+.m-login-submit .w-button {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+}
+
+.m-login-link {
+	margin: 0 10px;
+	line-height: normal;
+	position: relative;
+	+zoom: 1;
+}
+
+.m-login-link .aside {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.m-login-form .w-inputBar {
+	padding: 0;
+}
+
+.m-login-form .w-bar-label {
+	width: 62px;
+	text-align: right;
+}
+
+.m-login-form .w-bar-control {
+	margin-right: 10px;
+}
+
+.m-login-msg {
+	text-align: center;
+}
+
+.m-login-menu {
+	position: absolute;
+	background: #fff;
+	width: 100%;
+	top: 46px;
+	left: 0;
+}
+
+.m-login-menu .item {
+	border: 1px solid #D5D5D5;
+	margin-bottom: -1px;
+	height: 44px;
+	line-height: 44px;
+	padding-left: 62px;
+	padding-right: 10px;
+}
+
+.m-login-menu .item .inner {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
+.m-login-tips-bottom {
+	margin-left: 10px;
+	margin-top: 15px;
+}
+
+.m-login-extLogin {
+	margin-top: 20px;
+	padding: 0 10px;
+	font-size: 12px;
+}
+
+.m-login-extLogin .hd {
+	margin-bottom: 25px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+
+.m-login-extLogin .hd span {
+	position: relative;
+	top: 10px;
+	display: inline-block;
+	padding: 0 10px;
+	background: #f7f7f7;
+	color: #3d3d3d;
+}
+
+.m-login-extLogin .bd {
+	text-align: center;
+}
+
+.m-login-extLogin .bd .m-login-extLogin-item {
+	display: inline-block;
+	margin: 0 15px;
+	text-align: center;
+	line-height: 26px;
+	color: #666;
+}
+
+
+.m-user-addrList-manage .default,.m-simpleHeader, .m-simpleFooter{background:#fff;}
+.w-button-main{
+    background: #119bfb;
+    border-color: #119bfa;
+
+}
+
+html { 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+} 
+a:focus { 
+  outline: none; 
+} 
+.headxiansh{background:#fff;text-align:center;padding:15px 0px;}
+.headxiansh li {float:left;text-align:center;display:inline-block;width:20%;margin-bottom:5px;}
+.headxiansh li a{display:inline-block;width:50px;font-size:12px;color:#666666;}
+.headxiansh li img{width:50px;height:50px;display:inline-block;}
+.fenleityped{padding:30px 0 0 0;}
+.fenleityped li{width:100%;clear:both;border-bottom:1px solid #ccc;height:35px;line-height:35px;}
+.fenleityped li a{margin-left:20px;color:#74665B;font-size:14px;display:block;float:left;overflow:hidden;width:80%;}
+.fenleityped li img{float:left;width:20px;height:20px;margin-left:20px;position:relative;top:7px;}
+
+
+.m-login-form .w-bar-label{width:88px;}
+.m-login-link a{display:inline-block;height:50px;line-height:50px;}
+
+/*.zzanniu{max-width:350px;margin:0 auto;}*/
+
+.m-login-form {
+    background-color: #fff;
+    margin: 15px 10% 0;
+    position: relative;
+    z-index: 2;
+}
+
+.m-login-form .w-bar-label {
+    width: 36.47px;
+    text-align: center;
+}
+.iconfont {
+    font-size: .8rem;
+    display: block;
+    height: .8rem;
+    vertical-align: text-top;
+    text-align: center;
+    width: 1.52rem;
+    color: #666;
+}
+.m-login-submit {
+    margin: 15px 10% 10px;
+}
+.w-button-main {
+    background: #d93a55;
+    border-color: #119bfa;
+}
+.m-login-link {
+    margin: 0 10%;
+    line-height: normal;
+    position: relative;
+}
+
+.hongbao-container{background:#ed482a;color:#fff;padding:20px;}
+.hongbao-title{    font-size: 1.5rem; padding-top: 2rem;text-align:center;}
+.hongbao-stitle {
+    font-size: .9rem;
+    padding-top: .2rem;text-align:center;}
+ .hongbao-container .share-btn {
+  
+    background: #ffda5b;
+    display: block;
+    width: 65%;
+    color: #ed482a;
+    padding: .6rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 auto;
+    margin-top:20px;
+    -webkit-border-radius: .3rem;
+    border-radius: .3rem;
+    text-align:center;
+}
+.hongbao-container .hongbao-icon {
+    background: url(/tpl/tg/img/fsx.png) no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 5rem;
+    background-position: center center;
+    margin: 1.5rem 0;}

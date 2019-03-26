@@ -1,0 +1,169 @@
+
+{include file="home/header" title="夺宝记录"  /}
+    <script>
+
+        
+
+        var SysSecond=parseInt(1512047400);
+        //var get_next_open_time_url='http://mall.mfchong.com/index.php?routeurl=index-index-get_next_open_time';
+        var daojishi_reload_url=window.location.href;
+
+        var uid='{$uid}';
+        var status='0';
+        var load_list_url= "{:url('ajaxdingdan')}";
+        var type = '{$type}';
+        //var daojishi="{$ssc_time}";
+
+    </script>
+    <style>
+        body { background:#f6f6f6; }
+
+        {if $uid == $users['userId']}
+            .tabs li {
+                width: 20% !important;
+            }
+        {/if}
+    </style>
+
+<div class="wrapper">
+    <div class="tabs" style="margin-top:0;">
+        <li>
+            <a href="{:url('dingdan',array('type'=>1,'uid'=>$uid))}" {if $type == 1} class="current" {/if}>所有订单</a>
+        </li>
+        <li>
+            <a href="{:url('dingdan',array('type'=>2,'uid'=>$uid))}" {if $type == 2} class="current" {/if}>获胜订单</a>
+        </li>
+        {if $uid == $users['userId']}
+        <li>
+            <a href="{:url('dingdan',array('type'=>3,'uid'=>$uid))}" {if $type == 3} class="current" {/if}>失败订单</a>
+        </li>
+        
+        <li >
+            <a href="{:url('dingdan',array('type'=>4,'uid'=>$uid))}" {if $type == 4} class="current" {/if}>已兑换</a>
+        </li>
+        <li >
+            <a href="{:url('dingdan',array('type'=>5,'uid'=>$uid))}" {if $type == 5} class="current" {/if}>未兑换</a>
+        </li>
+        {else/}
+        <li class="litwo">
+            <a href="{:url('dingdan',array('type'=>3,'uid'=>$uid))}" {if $type == 3} class="current" {/if}>失败订单</a>
+        </li>
+        {/if}
+
+    </div>
+    <div class="content">
+        <div class="tab1">
+            <ul class="jilu">
+                <script> var end_id = 1 </script><input type="hidden" id="list_biao">
+
+                <div class="more" id="get_more" onclick="load_list();" style="height:150px;">加载更多</div>
+            </ul>
+        </div>
+
+    </div>
+
+    
+
+</div>
+{if $uid == $users['userId']}
+<div class="dd_btn">
+    <div class="btn_div"><a href="javascript:yijiandh();" class="duihuan">一键兑换 98折</a></div>
+    <div class="btn_div"><a href="javascript:alert('联系客服QQ：{:WSTConf(\'CONF.serviceQQ\')}');" class="tihuo">一键提货</a></div>
+</div>
+<script>
+
+function yijiandh() {
+    if($('.dd_btn .btn_div .duihuan').text() == '兑换中……'){
+        alert('兑换中……');
+        return;
+    }
+    if(confirm("一键兑换已获胜订单")){
+        $('.dd_btn .btn_div .duihuan').text('兑换中……');
+        var posturl = "{:url('yj_duihuans')}";
+        $.post(posturl,'',function(data){
+            alert(data.msg);
+            if(data.status == 1){
+                window.history.go(0);
+            }else{
+                $('.dd_btn .btn_div .duihuan').text('一键兑换 98折');
+            }
+
+        })
+    }  
+}
+
+</script>
+{/if}
+<div class="sub">
+        <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+        <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+        <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+</div>
+<script>
+
+    var need_daojishi=false;
+    var end_id = 1;
+    $(function(){
+
+        if (typeof end_id =="undefined"){
+
+            end_id = 1;
+        }
+
+        load_list();
+    });
+
+    function load_list(){
+        $('#get_more').html('正在加载中...');
+        var data={page:end_id,uid:uid,type:type}
+        var callback='load_list_callback(msg)';
+        ajax_post(load_list_url,data,callback);
+    }
+
+    function load_list_callback(msg){
+        $('#list_biao').before(msg);
+        if (!msg){
+            $('#get_more').remove();
+            exit;
+        }
+
+        //$('#get_more').remove();
+        
+        $('#get_more').html('加载更多');
+        end_id++;
+    }
+
+    function daojishi_start(){
+        if(need_daojishi==true){return;}
+        need_daojishi=true;
+        //alert(daojishi);
+        $(".fnTimeCountDown").fnTimeCountDown("");
+    }
+
+
+/**
+ * 兑换
+ * @author lukui  2017-12-02
+ * @param  {[type]} drid [description]
+ * @return {[type]}      [description]
+ */
+function duihuan(drid) {
+    var posturl = "{:url('dr_duihuans')}";
+    var param = {'drid':drid};
+    $.post(posturl,param,function(data){
+        
+        alert(data.msg);
+        if(data.status == 1){
+            window.history.go(0);
+        }
+    })
+
+}
+
+</script>
+
+
+
+
+
+</body></html>

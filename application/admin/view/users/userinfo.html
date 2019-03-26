@@ -1,0 +1,113 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/webuploader/webuploader.css?v={$v}" />
+<style>
+body{overflow:hidden}
+</style>
+{/block}
+{block name="js"}
+<script type='text/javascript' src='__STATIC__/plugins/webuploader/webuploader.js?v={$v}' type="text/javascript"></script>
+<script src="__ADMIN__/sysconfigs/sysconfigs.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<style>
+input[type="text"]{width:70%}
+textarea{width:70%;height:100px;}
+#wst-tab-5 input[type="text"]{width:50%}
+</style>
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+
+     <table class='wst-form wst-box-top'>
+
+
+	  <tr>
+	     <td colspan='2' class='head-ititle'>基本信息</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>用户名：</th>
+	     <td>{$info.user.userName}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>手机号：</th>
+	     <td>{$info.user.userPhone}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>余额：</th>
+	     <td>{$info.user.userMoney}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>身份：</th>
+	     <td>{if $info.user.uq == 104}客户{elseif $info.user.uq == 101/} 运营中心 {elseif $info.user.uq == 102 /} 会员单位 {elseif $info.user.uq == 103}代理商{/if}</td>
+	  </tr>
+	
+
+	{if $info.user.uq != 104}
+		<tr>
+		    <td colspan='2' class='head-ititle'>团队信息</td>
+		</tr>
+		{if in_array($info.user.uq,array(101))}
+		<tr>
+		    <th width='150'>会员单位总数：</th>
+		    <td>{:count($info.my102)}</td>
+		</tr>
+		{/if}
+
+		{if in_array($info.user.uq,array(101,102))}
+		<tr>
+		    <th width='150'>代理商总数：</th>
+		    <td>{:count($info.my103)}</td>
+		</tr>
+		{/if}
+
+		{if in_array($info.user.uq,array(101,102,103))}
+		<tr>
+		    <th width='150'>客户总数：</th>
+		    <td>{:count($info.my104)}</td>
+		</tr>
+		{/if}
+	{/if}
+
+
+	
+	<!-- <tr>
+	    <td colspan='2' class='head-ititle'>财务信息</td>
+	</tr>
+
+	<tr>
+	    <th width='150'>盈亏：</th>
+	    <td>{$info.user.userName}</td>
+	</tr>
+
+	<tr>
+	    <th width='150'>红利收益：</th>
+	    <td>{$info.user.userName}</td>
+	</tr>
+
+	<tr>
+	    <th width='150'>自己入金：</th>
+	    <td>{$info.user.userName}</td>
+	</tr>
+
+	<tr>
+	    <th width='150'>下级入金：</th>
+	    <td>{$info.user.userName}</td>
+	</tr>
+
+	<tr>
+	    <th width='150'>自己出金：</th>
+	    <td>{$info.user.userName}</td>
+	</tr>
+
+	<tr>
+	    <th width='150'>下级出金：</th>
+	    <td>{$info.user.userName}</td>
+	</tr> -->
+
+	 
+	 </table>
+
+{/block}

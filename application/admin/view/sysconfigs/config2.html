@@ -1,0 +1,112 @@
+<div id="wst-tab-2" title="运营设置" class='wst-tab'>
+     <table class='wst-form wst-box-top'>
+     	
+	   
+	 <tr>
+	     <td colspan='2' class='head-ititle'>运营设置</td>
+	  </tr>
+
+	  <tr>
+	     <th>网站是否开启：</th>
+	     <td>
+	     <label>
+	       <input type='radio' id='webisopen1' name='webisopen' class='ipt' value='1' {if $object['webisopen']==1}checked{/if}>是
+	     </label>
+	     <label>
+	       <input type='radio' id='webisopen0' name='webisopen' class='ipt' value='0' {if $object['webisopen']==0}checked{/if}>否
+	     </label>
+	     </td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>兑换手续费：</th>
+	     <td><input type="text" id='dh_fee' class='ipt' value="{$object['dh_fee']}" maxLength='100' /><span style="color:red">%</span></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>提现手续费：</th>
+	     <td><input type="text" id='tx_fee' class='ipt' value="{$object['tx_fee']}" maxLength='100' /><span style="color:red">%</span></td>
+	  </tr>
+
+
+	  <tr>
+	     <th width='150'>充值建议金额：</th>
+	     <td><input type="text" id='rech_jianyi' class='ipt' value="{$object['rech_jianyi']}" maxLength='100' /><br>
+	     		<span style="color:red">用-号隔开</span></td>
+	  </tr>
+
+
+	  <tr>
+	     <th width='150'>双人同期最大持仓：</th>
+	     <td><input type="text" id='s2_maxnum' class='ipt' value="{$object['s2_maxnum']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>四人同期最大持仓1：</th>
+	     <td><input type="text" id='s4_maxnum' class='ipt' value="{$object['s4_maxnum']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>十人同期最大持仓：</th>
+	     <td><input type="text" id='s10_maxnum' class='ipt' value="{$object['s10_maxnum']}" maxLength='100' /></td>
+	  </tr>
+
+
+	  <tr>
+	     <th width='150'>最小入金金额：</th>
+	     <td><input type="text" id='minrech' class='ipt' value="{$object['minrech']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>最大入金金额：</th>
+	     <td><input type="text" id='maxrech' class='ipt' value="{$object['maxrech']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>最小出金金额：</th>
+	     <td><input type="text" id='mincash' class='ipt' value="{$object['mincash']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>最大出金金额：</th>
+	     <td><input type="text" id='maxcash' class='ipt' value="{$object['maxcash']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>每周提现日期：</th>
+	     <td><input type="text" id='cashday' class='ipt' value="{$object['cashday']}" maxLength='100' /><br>
+	     		<span style="color:red">如周一至周五请填写1-2-3-4-5  请用-连接 不要有空格</span></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>每天提现时间：</th>
+	     <td><input type="text" id='cashtime' class='ipt' value="{$object['cashtime']}" maxLength='100' /><br>
+	     		<span style="color:red">如周早上8点只下午五点请填写8-17  请用-连接 不要有空格</span></td>
+	  </tr>
+	
+		<tr>
+	     <th width='150'>充值说明：</th>
+	     <td><input type="text" id='rechage_info' class='ipt' value="{$object['rechage_info']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>提现说明：</th>
+	     <td><input type="text" id='cash_info' class='ipt' value="{$object['cash_info']}" maxLength='100' /></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>代理流水最大比例：</th>
+	     <td><input type="text" id='daili_max' class='ipt' value="{$object['daili_max']}" maxLength='100' /><span style="color:red">%</span></td>
+	  </tr>
+
+
+	  <tr>
+	  	{if ($grant)}
+	     <td colspan='2' align='center'>
+	        <input type="button" value="保存" class='btn btn-blue' onclick='javascript:edit()'/>
+            <input type="reset" class='btn' value="重置" />
+	     </td>
+	     {/if}
+	  </tr>
+	 </table>
+</div>

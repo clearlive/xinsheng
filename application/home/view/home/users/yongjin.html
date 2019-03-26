@@ -1,0 +1,32 @@
+{include file="home/header" title="佣金明细"  /}
+
+
+
+<style>
+    body { background:#f5f5f5; }
+    dl.tx { width:96%; padding:50px 2%; font-size:200%; border-bottom:1px solid #e2e2e2; }
+    dl.tx dt { width:60%; }
+    dl.tx dt p { color:#212121; line-height:50px; padding-bottom:7px; }
+    dl.tx dt blockquote { color:#999999; padding-bottom:7px; }
+    dl.tx dd { width:40%; text-align:right; font-size:150%; padding-top:17px; }
+    dl.tx dd.t { color:#e34145; }
+</style>
+
+{volist name="list" id="vo"}
+<dl class="tx">
+    <dt><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$vo.remark}</font></font></p><blockquote><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$vo.createTime}</font></font></blockquote></dt>
+    <dd class="t"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$vo.money}元</font></font></dd>
+</dl>
+{/volist}
+
+
+
+	<div class="sub">
+	    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+	    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+	    <!-- <div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div> -->
+	    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+	</div>
+
+</body></html>
+

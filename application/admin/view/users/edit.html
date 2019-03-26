@@ -1,0 +1,268 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/webuploader/webuploader.css?v={$v}" />
+{/block}
+{block name="js"}
+<script type='text/javascript' src='__STATIC__/plugins/webuploader/webuploader.js?v={$v}'></script>
+<script src="__ADMIN__/users/users.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<form id="userForm" autocomplete="off" >
+<table class='wst-form wst-box-top'>
+  <tr>
+
+{if ((int)$data['userId']>0)}
+ 
+<tr>
+    <th>上级关系<font color='red'>*</font>：</th>
+    <td>
+        {$myups}
+    </td>
+ </tr>
+      
+          
+{/if}
+
+      <th width='150'>账号<font color='red'>*</font>：</th>
+
+
+          <td width='370'>
+            {if ($data['userId']>0)}
+              {$data['loginName']}
+            {else /}
+              <input type="text" class="ipt" id="loginName" name="loginName"  />
+            {/if}
+              
+          </td>
+          <td rowspan="5">
+            <div id="preview" >
+                <img src="{if $data['userPhoto']==''}/{:WSTConf('CONF.userLogo')}{else}{$data['userPhoto']}{/if}"  height="150" />
+            </div>
+            <div id='adFilePicker' style="margin-left:40px;">上传头像</div>
+            <input type="hidden" id="userPhoto" class="ipt" />
+            <span id='uploadMsg'></span>
+
+          </td>
+       </tr>
+       {if ((int)$data['userId']==0) ||  $userinfos['uq'] == 0}
+         <tr>
+          {if ((int)$data['userId']==0)}
+            <th>密码<font color='red'>*</font>：</th>
+            <td><input type="password" id='loginPwd' class='ipt' maxLength='20' value='' data-rule="登录密码: required;length[6~20]" data-target="#msg_loginPwd"/></td>
+          {else /}
+            <th>密码：</th>
+            <td><input type="password" id='loginPwd' class='ipt' maxLength='20' value='' /></td>
+          {/if}
+         </tr>
+       
+       <tr>
+          <th>用户名<font color='red'>*</font>：</th>
+          <td>
+              <input type="text" class="ipt" id="userName" name="userName" value="{$data['userName']}" />
+          </td>
+       </tr>
+    {/if}
+       
+          <tr>
+            <th>身份<font color='red'>*</font>：</th>
+            <td>
+            {if ((int)$data['userId']==0)}
+                <input type="hidden" class="ipt" id="uq" name="uq" value="{$uq}">
+                {volist name="userQuery" id="vo"}
+                {if $uq == $vo['utype']}
+                <p>{$vo.rankName}</p>
+                {/if}
+                {/volist}
+            {else/}
+              <p>{:getquname($data['uq'])}</p>
+            
+            {/if}
+            </td>
+         </tr>
+{if ((int)$data['userId']==0) && $userinfos['uq'] == 0}
+          <tr>
+            <th>选择归属<font color='red'>*</font>：</th>
+            <td>
+              
+                {if in_array($uq,array(USERTYPE2,USERTYPE3,USERTYPE4))}
+                <select class="ipt" name="par101" id="par101">
+                  <option value="">请选择{$userQuery[3]['rankName']}</option>
+                  {volist name="userlist" id="vo"}
+                  <option value="{$vo.userId}">{$vo.userName}</option>
+                  {/volist}
+                </select>
+                {/if}
+              
+                {if in_array($uq,array(USERTYPE3,USERTYPE4))}
+                <select class="ipt" name="par102" id="par102">
+                  <option value="">请选择{$userQuery[2]['rankName']}</option>
+                </select>
+                {/if}
+
+                {if in_array($uq,array(USERTYPE4))}
+                <select class="ipt" name="par103" id="par103">
+                  <option value="">请选择{$userQuery[1]['rankName']}</option>
+                </select>
+                {/if}
+
+                {if in_array($uq,array(USERTYPE1))}
+                <p>归属平台</p>
+                {/if}
+
+            </td>
+         </tr>
+
+         
+
+{else/}
+
+{if ((int)$data['userId']==0) && $userinfos['uq'] == 101}
+<tr>
+    <th>选择归属<font color='red'>*</font>：</th>
+    <td>
+      
+      <select class="ipt" name="par101" id="par101">
+        <option value="">请选择{$userQuery[3]['rankName']}</option>
+        <option value="{$userinfos['userId']}">{$userinfos.userName}</option>
+      </select>
+
+      {if in_array($uq,array(USERTYPE3,USERTYPE4))}
+      <select class="ipt" name="par102" id="par102">
+        <option value="">请选择{$userQuery[2]['rankName']}</option>
+      </select>
+      {/if}
+
+      {if in_array($uq,array(USERTYPE4))}
+      <select class="ipt" name="par103" id="par103">
+        <option value="">请选择{$userQuery[1]['rankName']}</option>
+      </select>
+      {/if}
+
+  </td>
+</tr>
+
+{/if}
+
+
+{if ((int)$data['userId']==0) &&  $userinfos['uq'] == 102}
+<tr>
+    <th>选择归属<font color='red'>*</font>：</th>
+    <td>
+      
+      <select class="ipt" name="par102" id="par102">
+        <option value="">请选择{$userQuery[2]['rankName']}</option>
+        <option value="{$userinfos['userId']}">{$userinfos.userName}</option>
+      </select>
+
+
+
+      {if in_array($uq,array(USERTYPE4))}
+      <select class="ipt" name="par103" id="par103">
+        <option value="">请选择{$userQuery[1]['rankName']}</option>
+      </select>
+      {/if}
+
+  </td>
+</tr>
+
+{/if}
+
+{if ((int)$data['userId']==0) ||  $userinfos['uq'] == 0}
+<tr>
+          <th>状态<font color='red'>*</font>：</th>
+          <td>
+            <label><input type="radio" class="ipt" id="userStatus" name="userStatus" <?=($data['userStatus']==1)?'checked':'';?> value="1" />启用</label>
+            <label><input type="radio" class="ipt" id="userStatus" name="userStatus" <?=($data['userStatus']==2)?'checked':'';?> value="2" />停用</label>
+          </td>
+       </tr>
+ {/if} 
+
+
+
+
+
+
+ {/if}
+
+    {if ($data['uq'] == 104 || $data['uq'] == 103)}
+    <tr>
+        <th>类型<font color='red'>*</font>：</th>
+        <td>
+            <label><input type="radio" class="ipt" id="uq" name="uq" <?=($data['uq']==103)?'checked':'';?> value="103" />代理商</label>
+            <label><input type="radio" class="ipt" id="uq" name="uq" <?=($data['uq']==104)?'checked':'';?> value="104" />客户</label>
+        </td>
+    </tr>
+    {/if}
+{if ((int)$data['userId']==0) ||  $userinfos['uq'] == 0}
+       <tr>
+          <th>手机号码<font color='red'>*</font>：</th>
+          <td>
+              <input type="text" class="ipt" id="userPhone" name="userPhone" value="{$data['userPhone']}" />
+          </td>
+       </tr>
+
+      {if ((int)$userinfos['uq']==0)}
+       <!-- <tr>
+          <th>会员余额：</th>
+          <td>
+              <input type="text" class="ipt" id="userMoney" name="userMoney" value="{$data['userMoney']}" />
+          </td>
+       </tr> -->
+      {/if}
+
+      {if $uq == 101 || $data['uq'] == 101 || $uq == 102 || $data['uq'] == 102 }
+      <tr>
+          <th>保证金：</th>
+          <td>
+              <input type="text" class="ipt" id="minMoney" name="minMoney" value="{$data['minMoney']}" />
+          </td>
+       </tr>
+      {/if}
+       
+       <!-- <tr>
+          <th>会员积分：</th>
+          <td>
+              <input type="text" class="ipt" id="userScore" name="userScore" value="{$data['userScore']}" />
+          </td>
+       </tr> -->
+ {/if} 
+
+      {if (isset($data['uq']) && ( $data['uq'] != 104) && $userinfos['userId'] != $data['userId'] ) || ((int)$data['userId']==0 && $uq != 104)}
+       <tr>
+          <th>红利比例：</th>
+          <td>
+              <input type="text" class="ipt" id="percent" name="percent" value="{$data['percent']}" />%
+          </td>
+       </tr>
+        {if (isset($data['uq']) && ( $data['uq'] != 103) ) || ((int)$data['userId']==0 && $uq != 103)}
+       <tr>
+          <th>手续费比例：</th>
+          <td>
+              <input type="text" class="ipt" id="fee_percent" name="fee_percent" value="{$data['fee_percent']}" />%
+          </td>
+       </tr>
+       {/if}
+      {/if}
+
+       
+       
+  
+  <tr>
+     <td colspan='2' align='center'>
+       <input type="hidden" name="id" id="userId" class="ipt" value="<?=(int)$data['userId']?>" />
+       <input type="submit" value="提交" class='btn btn-blue' />
+       <input type="button" onclick="javascript:history.go(-1)" class='btn' value="返回" />
+     </td>
+  </tr>
+</table>
+</form>
+<script>
+  var posturl = "{:url('selectuser')}";
+
+$(function(){editInit()});
+
+</script>
+
+{/block}
+

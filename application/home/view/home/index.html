@@ -1,0 +1,211 @@
+{include file="home/header" title="首页"  /}
+
+    <script>
+    
+        var daojishi="{$ssc_time}";
+    </script>
+    <style>
+        body { background:#f0f0f0; }
+    </style>
+
+    <div class="scrollleftdiv">
+        <div class="ico"></div>
+        <div class="scrollleft" id="topscroll" style="overflow: hidden; position: relative;"></div>
+
+    </div>
+
+    
+	<div class="topbanner" onclick="window.location.href='{:GetTableValue('ads',81,'adURL','adId')}'"><img src="__ROOT__/{:GetTableValue('ads',81,'adFile','adId')}"></div>
+    
+
+	<div class="nav">
+		<span class="n1">公平时彩</span>
+		<span class="n2">公平公正</span>
+		<span class="n3">全网最低</span>
+	</div>
+    <div class="wrapper">
+
+        {volist name="goods" id="vo"}
+    	<div class="main">
+            <a href='{:Url("home/goods/detail",array('id'=>$vo["goodsId"],'lh'=>0))}'>
+                <dl>
+                    <dt><img src="__ROOT__/{:WSTImg($vo['goodsImg'])}"></dt>
+                    <dd>
+                        <h1>{$vo['goodsName']}</h1>
+                        <h2>
+                            <span>双人：<i>¥{$vo['play2']}</i></span>
+                            <span>四人：<i>¥{$vo['play4']}</i></span>
+                            <span>十人：<i>¥{$vo['play10']}</i></span>
+                        </h2>
+                        <h3>
+                        {if $isopen == 1}
+                        <div class="djs fnTimeCountDown fl">
+                            <span class="hour"></span><i>:</i>
+                            <span class="mini"></span><i>:</i>
+                            <span class="sec"></span><i>:</i>
+                            <span class="hm"></span>
+                        </div>
+                        {else /}
+                        <div>停止秒杀</div>
+                        {/if}
+                        <em>点击抢购</em>
+                        </h3>
+                    </dd>
+                </dl>
+            </a>
+	    </div>
+        {/volist}
+		
+
+		
+<!--		<div class="index_ten">
+			<p class="lh_title"> 龙虎斗 </p>
+			{volist name="goods" id="vo"}
+			<div class="ten_goods" onclick="location.href='{:Url("home/goods/detail",array('id'=>$vo["goodsId"],'lh'=>1))}'">
+				<img src="__ROOT__/{:WSTImg($vo['goodsImg'])}">
+				<h1>{$vo['goodsName']}</h1>
+				{if $isopen == 1}
+				<div class="djs fnTimeCountDown fl">
+					<span class="hour"></span><i>:</i>
+					<span class="mini"></span><i>:</i>
+					<span class="sec"></span><i>:</i>
+					<span class="hm"></span>
+				</div>
+				{else /}
+				<div class="djsz">停止秒杀</div>
+				{/if}
+				<em>点击抢购</em>
+			</div>
+			{/volist}
+		</div>-->
+		
+
+        
+    	
+
+            
+        <div class="tabs tabs1" style="margin-top:30px;">
+            <li><a name=".tab1" class="current">最新参与记录</a></li>
+            <li class="litwo"><a name=".tab2">最新获奖记录</a></li>
+        </div>
+
+        <div class="content">
+            <div class="tab1" style="display: block;">
+                <ul class="list_lh1">
+
+                    
+                    
+                   
+                    <input type="hidden" id="order_list_biao">
+                <a id="get_more" href="javascript:void(0);" onclick="load_order_list();" class="more">加载更多</a>
+                </ul>
+            </div>
+            <div class="tab2" style="display: none;">
+                <ul class="list_lh1">
+                    
+                    
+
+                <input type="hidden" id="order_win_list_biao">
+                <a id="get_more_2" href="javascript:void(0);" onclick="load_order_win_list();" class="more">加载更多</a>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+	 <div class="sub">
+		<div><a href="{:url('home/index/index')}" class="a1">首页</a></div>
+		<div><a href="{:url('kaijiang')}" class="a2 a_2">开奖</a></div>
+		<!--	<div><a href="{:url('paihang')}" class="a3 a_3">排行</a></div> -->
+		<div><a href="{:url('users/index')}" class="a4 a_4">我的</a></div>
+	</div>
+     <script type="text/javascript">
+	 var end_id = 1 
+     var end_win_id = 1 
+	var daojishi_reload_url = "{:url('home/index/index')}"
+	//顶部滚动
+    
+	//切换
+	$(function(){
+
+	    if (typeof end_id =="undefined"){
+
+            end_id = 1;
+        }
+        if (typeof end_win_id =="undefined"){
+
+            end_id = 1;
+        }
+
+		loadTab();
+		load_order_list();
+		load_order_win_list(end_win_id);
+        load_new_order_callback();//load_new_order();
+		$(".fnTimeCountDown").fnTimeCountDown("");
+	});
+	function load_order_list(){
+		
+        var get_url = "{:url('index_order')}";
+        get_url = get_url+"?page="+end_id;
+        $.get(get_url,function(data){
+            
+            load_order_list_callback(data);
+        })
+	}
+	
+	function load_order_list_callback(msg){
+	    if (!msg){
+            //load_order_list(end_id);
+        }
+
+		//$('#get_more').remove();
+		$('#order_list_biao').before(msg);
+        end_id++;
+	}
+	function load_order_win_list(){
+		
+        var get_url = "{:url('index_orderwin')}";
+        get_url = get_url+"?page="+end_win_id;
+        $.get(get_url,function(data){
+            
+            load_order_win_list_callback(data);
+        })
+	}
+	
+	function load_order_win_list_callback(msg){
+        if (!msg){
+            //load_order_win_list(end_win_id);
+        }
+
+		//$('#get_more_2').remove();
+		$('#order_win_list_biao').before(msg);
+        end_win_id++;
+	}
+//	function load_new_order(){
+//
+//		var callback='load_new_order_callback(msg)';
+//
+//		ajax_post(load_new_order_url,{},callback);
+//
+//	}
+
+    function load_new_order_callback(msg){
+
+        msg = '<ul><li>{$msg.msgContent}</li></ul>';
+
+        $('#topscroll').html(msg);
+         $("#topscroll").imgscroll({
+                speed: 8,    //滚动速度
+                amount: 0,    //滚动过渡时间
+                width: 1,     //滚动步数
+                dir: "left"   // "left" 或 "up" 向左或向上滚动
+            });
+    }
+
+
+
+    
+    </script> 
+	
+
+</body></html>

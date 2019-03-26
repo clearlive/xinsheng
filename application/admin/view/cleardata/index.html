@@ -1,0 +1,55 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/webuploader/webuploader.css?v={$v}" />
+<style>
+body{overflow:hidden}
+.contents{
+	margin: 2%;
+}
+</style>
+{/block}
+{block name="js"}
+<script type='text/javascript' src='__STATIC__/plugins/webuploader/webuploader.js?v={$v}' type="text/javascript"></script>
+<script src="__ADMIN__/cleardata/cleardata.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<style>
+
+#wst-tab-5 input[type="text"]{width:50%}
+</style>
+
+
+<div class="contents">
+
+
+	<select name="ctype" id="ctype" class="j-ipt">
+		<option value="">请选择</option>
+		<option value="1">资金日志</option>
+		<option value="2">订单记录</option>
+		<option value="3">提货记录</option>
+		<option value="4">充值记录</option>
+		<option value="5">提现记录</option>
+	</select>
+	时间：<input type="text" style="margin:0px;vertical-align:baseline;" id="stacerateTime" name="stacerateTime" class="j-ipt" maxLength="20"  />
+      &nbsp;-&nbsp;
+      <input type="text" style="margin:0px;vertical-align:baseline;" id="endcerateTime" name="endcerateTime" class="j-ipt" maxLength="20"  />&nbsp;&nbsp;
+	
+	<button class="btn btn-blue" onclick='javascript:cleardata()'>清除</button>
+	<br>
+	<hr>
+	<br>
+	<p style="color:red">删除之前请先做好备份 [ <a href="javascript:beifen('backup');">点击备份</a> ]</p>
+
+</div>
+<div id="maingrid"></div>
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+<script>
+  $(function(){initGrid()});
+  //时间选择器
+$('#stacerateTime').datetimepicker();
+$('#endcerateTime').datetimepicker();
+
+</script>
+{/block}

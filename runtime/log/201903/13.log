@@ -1,0 +1,40 @@
+[ 2019-03-13T10:54:48+08:00 ] 172.24.138.108 36.43.110.219 POST /admin/Users/pageQuery.html
+[ log ] www.6q01c.cn/admin/Users/pageQuery.html [运行时间：2.568421s][吞吐率：0.39req/s] [内存消耗：8,639.21kb] [文件加载：58]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T11:27:47+08:00 ] 172.24.138.108 36.43.110.219 POST /admin/Users/pageQuery.html
+[ log ] www.6q01c.cn/admin/Users/pageQuery.html [运行时间：2.851707s][吞吐率：0.35req/s] [内存消耗：8,888.76kb] [文件加载：58]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T14:20:09+08:00 ] 172.24.138.108 36.43.110.219 POST /admin/Users/pageQuery/order/1.html
+[ log ] www.6q01c.cn/admin/Users/pageQuery/order/1.html [运行时间：2.309248s][吞吐率：0.43req/s] [内存消耗：8,348.60kb] [文件加载：60]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T14:20:09+08:00 ] 172.24.138.108 157.255.172.18 POST /admin/cashdraws/pageQuery.html
+[ log ] www.6q01c.cn/admin/cashdraws/pageQuery.html [运行时间：1.261939s][吞吐率：0.79req/s] [内存消耗：6,174.61kb] [文件加载：59]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T14:20:18+08:00 ] 172.24.138.108 36.43.110.219 POST /admin/drorder/pageQuery.html
+[ log ] www.6q01c.cn/admin/drorder/pageQuery.html [运行时间：2.056483s][吞吐率：0.49req/s] [内存消耗：7,625.82kb] [文件加载：60]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T14:39:49+08:00 ] 172.24.138.108 36.43.110.219 POST /admin/drorder/pageQuery.html
+[ log ] www.6q01c.cn/admin/drorder/pageQuery.html [运行时间：2.461039s][吞吐率：0.41req/s] [内存消耗：8,179.42kb] [文件加载：58]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T16:36:49+08:00 ] 172.24.138.108 117.136.86.242 POST /admin/Users/pageQuery.html
+[ log ] www.6q01c.cn/admin/Users/pageQuery.html [运行时间：2.332976s][吞吐率：0.43req/s] [内存消耗：8,247.49kb] [文件加载：58]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------
+[ 2019-03-13T17:52:47+08:00 ] 172.24.138.108 36.43.110.219 POST /admin/Users/pageQuery.html
+[ log ] www.6q01c.cn/admin/Users/pageQuery.html [运行时间：2.738118s][吞吐率：0.37req/s] [内存消耗：9,079.27kb] [文件加载：58]
+[ error ] [1040]SQLSTATE[08004] [1040] Too many connections
+
+---------------------------------------------------------------

@@ -1,0 +1,57 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/ssclist/ssclist.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+
+
+
+<div style='clear:both'></div>
+
+	<table class='wst-form wst-box-top'>
+
+	  <tr>
+	     <th width='150'>期数：</th>
+	     <td><input type="text" id='issue' name='issue' class='jd-ipt' value="{$info['issue']?$info['issue']:''}" maxLength='100' placeholder='请填写期数'/></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>开奖号：</th>
+	     <td><input type="text" id='balls' name='balls' class='jd-ipt' value="{$info['balls']?$info['balls']:''}" maxLength='100' placeholder='请填写开奖号'/></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>开奖时间：</th>
+	     <td><input type="text" id='createtime' name='createtime' class='jd-ipt' value="{$info['createtime']?date('Y-m-d H:i:s',$info['createtime']):''}" maxLength='100' placeholder='请填写开奖时间'/></td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>采集时间：</th>
+	     <td><input type="text" id='date' name='date' class='jd-ipt' value="{$info['date']?date('Y-m-d H:i:s',$info['date']):''}" maxLength='100' placeholder='请填写采集时间'/></td>
+	  </tr>
+
+		{if isset($info['id'])}
+			<input type="hidden" id="id" name="id" class="jd-ipt" value="{$info['id']}">
+		{/if}
+
+	  <tr>
+	     <th width='150'></th>
+	     <td><button class="btn btn-green "  onclick="return adddata()">新增</button></td>
+	  </tr>
+
+		
+
+	</table>
+</div>
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+<script>
+//时间选择器
+$('#createtime').datetimepicker();
+$('#date').datetimepicker();
+
+</script>
+{/block}

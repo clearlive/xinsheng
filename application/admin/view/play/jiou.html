@@ -1,0 +1,65 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/webuploader/webuploader.css?v={$v}" />
+<style>
+.inputs{
+  width: 70% !important;;
+}
+</style>
+{/block}
+{block name="js"}
+<script src="__ADMIN__/play/plays.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<form id="confForm" autocomplete="off" >
+<table class='wst-form wst-box-top'>
+  <tr>
+      
+       <tr>
+          <th>游戏名称：</th>
+          <td>
+              <input type="text" class=" inputs" disabled  id="playName" name="playName" value="{$playName}" />
+          </td>
+       </tr>
+
+       <tr>
+          <th>游戏代码：</th>
+          <td>
+              <input type="text" class="ipt inputs" disabled  id="playCode" name="playCode" value="{$playCode}" />
+          </td>
+       </tr>
+
+       <tr>
+          <th>赢利奖励比例：</th>
+          <td>
+              <input type="text" class="ipt inputs" id="wingive" name="wingive" value="{$data['wingive']?$data['wingive']:''}" />
+              <p>客户盈利后奖励比例，如100元奖励60元则输入0.6</p>
+          </td>
+       </tr>
+       
+
+       
+       
+
+       
+  
+  <tr>
+     <td colspan='2' align='center'>
+       <input type="hidden" class="ipt" id="playId" name="playId" value="{$playId}" />
+       <input type="hidden" class="ipt" id="id" name="id" value="{$data['id']}" />
+       <input type="submit" value="提交" class='btn btn-blue' />
+       <input type="button" onclick="javascript:history.go(-1)" class='btn' value="返回" />
+     </td>
+  </tr>
+</table>
+</form>
+<script>
+  var posturl = "{:url('selectuser')}";
+
+$(function(){confInit()});
+
+</script>
+
+{/block}
+

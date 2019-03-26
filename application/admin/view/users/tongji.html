@@ -1,0 +1,77 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/webuploader/webuploader.css?v={$v}" />
+<style>
+body{overflow:hidden}
+</style>
+{/block}
+{block name="js"}
+
+{/block}
+{block name="main"}
+<style>
+input[type="text"]{width:70%}
+textarea{width:70%;height:100px;}
+#wst-tab-5 input[type="text"]{width:50%}
+</style>
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+
+     <table class='wst-form wst-box-top'>
+
+
+	  <tr>
+	     <td colspan='2' class='head-ititle'>统计</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>用户名：</th>
+	     <td>{$info.userName}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>投注总额：</th>
+	     <td>{$info.allTouzhu}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>中奖总额：</th>
+	     <td>{$info.allWin}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>总返点：</th>
+	     <td>{$info.allRes}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>充值：</th>
+	     <td>{$info.rech}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>提现：</th>
+	     <td>{$info.cash}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>余额：</th>
+	     <td>{$info.userMoney}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>冻结资金：</th>
+	     <td>{$info.lockMoney}</td>
+	  </tr>
+
+	  <tr>
+	     <th width='150'>个人总结算：</th>
+	     <td>--</td>
+	  </tr>
+
+	
+	
+
+	 
+	 </table>
+
+{/block}

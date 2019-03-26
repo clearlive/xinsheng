@@ -1,0 +1,28 @@
+{include file="home/header" title="分享"  /}
+	<style type="text/css">
+		
+		.yqm{
+		    position: fixed;
+			bottom: 276px;
+			font-size: 313%;
+			left: 43%;
+			margin-left: -125px;
+			color: #FEF0AA;
+		}
+	</style>
+	<div>
+
+		<img src="{$path}" width="100%" alt="">
+	</div>
+
+	<p class="yqm">邀请码：{$useryqm}</p>
+
+	<div class="sub">
+	    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+	    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+	    <!-- <div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div> -->
+	    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+	</div>
+
+</body></html>
+

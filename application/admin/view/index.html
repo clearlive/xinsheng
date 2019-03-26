@@ -1,0 +1,87 @@
+{extend name="base" /}
+{block name="css"}
+<style>
+body{padding:0px;background:#EAEEF5;overflow:hidden;}
+.l-accordion-content{height: auto !important;}
+</style>
+{/block}
+{block name="js"}
+<script src="__ADMIN__/js/index.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+
+<div id="wst-tabs" style="width:100%; height:100%;overflow: hidden; border: 1px solid #D3D3d3;" class="liger-tab">
+
+   {volist name="menus" id="vo" key="k"}
+   <div id="wst-tab-{$vo['menuId']}" tabId="wst-tab-{$vo['menuId']}" v="{$vo['menuId']}" title="{$vo['menuName']}" class='wst-tab' {if condition="$k ==0"}lselected="true"{/if} style="height: 300px"> 
+   </div>
+   {/volist}
+
+</div>
+<div class="wst-topmenu-welcome">
+    <a href="{:url('home/index/index')}" target='_blank' class="wst-top-link">网站首页</a>
+    
+    {if WSTGrant('HHQL_04')}
+    <span class="wst-space">|</span>
+    <a href="#none" onclick='clearCache()' class="wst-top-link">清除缓存</a>
+    {/if}
+    <span class="wst-space">|</span>
+    <a href="#none" onclick='editPassBox()' class="wst-top-link">修改密码</a>
+    <span class="wst-space">|</span>
+    <a href="javascript:logout()" class="wst-top-link">退出系统</a> 
+</div> 
+
+<div id='editPassBox' style='display:none;padding-top:5px;'>
+  <form id='editPassFrom' autocomplete="off">
+   <table class='wst-form'>
+      <tr>
+         <th style='width:100px'>原密码：</th>
+         <td><input type='password' id='srcPass' name='srcPass' class='ipt' data-rule="原密码: required;" maxLength='16'/></td>
+      </tr>
+      <tr>
+         <th>新密码：</th>
+         <td><input type='password' id='newPass' name='newPass' class='ipt' data-rule="新密码: required;length[6~]" maxLength='16'/></td>
+      </tr>
+      <tr>
+         <th>确认密码：</th>
+         <td><input type='password' id='newPass2' name='newPass2' class='ipt' data-rule="确认密码: required;match(newPass);" maxLength='16'/></td>
+      </tr>
+   </table>
+  </form>
+</div>
+
+
+
+<div id='check_cash' style='display:none;padding-top:5px;'>
+  <form id='check_cashFrom' autocomplete="off">
+   <table class='wst-form'>
+      <tr>
+         <th style='width:100px'>原密码：</th>
+         <td><input type='password' id='srcPass' name='srcPass' class='ipt' data-rule="原密码: required;" maxLength='16'/></td>
+      </tr>
+      <tr>
+         <th>新密码：</th>
+         <td><input type='password' id='newPass' name='newPass' class='ipt' data-rule="新密码: required;length[6~]" maxLength='16'/></td>
+      </tr>
+      <tr>
+         <th>确认密码：</th>
+         <td><input type='password' id='newPass2' name='newPass2' class='ipt' data-rule="确认密码: required;match(newPass);" maxLength='16'/></td>
+      </tr>
+   </table>
+  </form>
+</div>
+
+
+
+<script>  
+{if $userinfos['uq'] == 0}
+var ischeck = 0;//1
+{else /}
+var ischeck = 0;
+{/if}
+
+</script>
+
+
+
+{/block}

@@ -1,0 +1,57 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/logmoney/logmoney.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+类型：  <select name="targetType" id="targetType" class='j-ipt'>
+			<option value="">请选择</option>
+			<option value="0">下单</option>
+			<option value="1">用户结单分红</option>
+			<option value="9">用户结单手续费</option>
+			<option value="6">提现</option>
+			<option value="7">PK获胜兑换</option>
+			<option value="8">PK获胜兑换手续费</option>
+			<option value="10">代理商流水返佣</option>
+
+		</select>
+订单id：<input type="text" name="dataId" value="{$orderId?$orderId:''}"  placeholder='订单id' id="dataId" class='j-ipt'/>
+
+用户：<input type="text" name="userName" value="{$uid?$uid:''}" placeholder='用户名称/id/手机/昵称' id="targetId" class='j-ipt'/>
+
+时间：<input type="text" style="margin:0px;vertical-align:baseline;" id="stacerateTime" name="stacerateTime" class="j-ipt" maxLength="20"  />
+      &nbsp;-&nbsp;
+      <input type="text" style="margin:0px;vertical-align:baseline;" id="endcerateTime" name="endcerateTime" class="j-ipt" maxLength="20"  />&nbsp;&nbsp;
+
+<button class="btn btn-blue" onclick='javascript:loadGrid(0)'>查询</button>
+<div style='clear:both'></div>
+</div>
+<div id="maingrid"></div>
+
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+
+
+
+<script>
+$(function(){
+	
+	{if $uid || $orderId } 
+		//$('#maingrid').html('');
+		initGrid(1);
+	{else }
+		initGrid();
+	{/if}
+})
+
+
+//时间选择器
+$('#stacerateTime').datetimepicker();
+$('#endcerateTime').datetimepicker();
+
+
+
+</script>
+{/block}

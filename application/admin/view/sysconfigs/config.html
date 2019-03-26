@@ -1,0 +1,27 @@
+<div id="wst-tab-6" title="新增配置" class='wst-tab'>
+    <table class='wst-form wst-box-top'>
+        <tr>
+            <th width='150'>配置标题：</th>
+            <td><input type="text" id='fieldName' class='ipts' value="" maxLength='100'/></td>
+        </tr>
+
+        <tr>
+            <th width='150'>配置代码：</th>
+            <td><input type="text" id='fieldCode' class='ipts' value="" maxLength='100'/></td>
+        </tr>
+
+        <tr>
+            <th width='150'>配置内容：</th>
+            <td><input type="text" id='fieldValue' class='ipts' value="" maxLength='100'/></td>
+        </tr>
+
+        <tr>
+            {if ($grant)}
+            <td colspan='2' align='center'>
+                <input type="button" value="保存" class='btn btn-blue' onclick='javascript:adddata()'/>
+                <input type="reset" class='btn' value="重置" />
+            </td>
+            {/if}
+        </tr>
+    </table>
+</div>

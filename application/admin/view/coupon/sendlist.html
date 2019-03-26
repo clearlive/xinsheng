@@ -1,0 +1,20 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/coupon/coupon.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+<div class="wst-toolbar">
+	<button class="btn btn-green " onclick='javascript:index()'>优惠券列表</button>
+   <div style='clear:both'></div>
+</div>
+<div style='clear:both'></div>
+</div>
+<div id="sendpage"></div>
+<script>
+$(function(){
+	sendpage();
+})
+</script>
+{/block}

@@ -1,0 +1,66 @@
+{extend name="base" /}
+{block name="main"}
+<div style='margin:10px;'>
+
+
+  <div class='order-box'>
+        <div class='box-head'>订单详情：</div>
+        <table class='wst-form'>
+          <tr>
+             <th width='100'>购买产品：</th>
+             <td><a target="_black" href="{:url('home/goods/detail',array('id'=>$object['goodsId']))}">{:getgoods($object['goodsId'],'goodsName')}</a></td>
+           </tr>
+          <tr>
+             <th>升级类型：</th>
+             <td>
+              {if $object['is_over'] == 1 && $object['iswin'] == 1}大升级 ：{:getgoods($object['goodsId'],'sjgoodsName')}
+              {elseif $object['is_over'] == 1 && $object['iswin'] == 0/}小升级
+              {else /}未参与
+              {/if}
+             </td>
+           </tr>
+        
+        </table>
+    </div>
+
+
+
+
+    <div class='order-box'>
+        <div class='box-head'>玩法：{$object['playName']}</div>
+        <table class='wst-form'>
+          <tr>
+             <th width='100'>订单编号：</th>
+             <td>{$object['orderNo']}</td>
+           </tr>
+          <tr>
+             <th>赢利金额：</th>
+             <td>{$object['playinfo']['winmoney']}</td>
+           </tr>
+        {if $object['playCode'] == 'jiou'}
+            
+           <tr>
+             <th>买入类型：</th>
+             <td>{$object['playinfo']['otype']?'奇':'偶'}</td>
+           </tr>
+           
+           <tr>
+             <th>时时彩期数：</th>
+             <td>{$object['playinfo']['issue']}</td>
+           </tr>
+           <tr>
+             <th>结单：</th>
+             <td>{$object['playinfo']['dors']?'奇':'偶'}</td>
+           </tr>
+           <tr>
+             <th>开奖：</th>
+             <td>{$object['balls']}</td>
+           </tr>
+        {elseif $object['playCode'] == 'hongbao'}
+
+        {/if}
+        </table>
+    </div>
+   <div class='wst-footer'><input type='button' value='返回' class='btn' onclick='javascript:history.go(-1)'></div>
+<div>
+{/block}

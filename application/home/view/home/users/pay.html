@@ -1,0 +1,23 @@
+{include file="home/header" title="客服"  /}
+
+    <h1 style="text-align: center;font-size: 40px;margin-top: 40px">支付跳转中。。。</h1>
+	<form name="pay" action="http://qiezhifu.com/cashier" method="post">
+        <input type="hidden" name="version" value="{$version}">
+        <input type="hidden" name="customerid" value="{$customerid}">
+        <input type="hidden" name="sdorderno" value="{$sdorderno}">
+        <input type="hidden" name="dingdan" value="{$dingdan}">
+        <input type="hidden" name="total_fee" value="{$total_fee}">
+        <input type="hidden" name="notifyurl" value="{$notifyurl}">
+        <input type="hidden" name="returnurl" value="{$returnurl}">
+        <input type="hidden" name="sign" value="{$sign}">
+    </form>
+	<script>
+		$(function(){
+            $("form[name=pay]").submit();
+        })
+	</script>
+</body></html>
+
+
+
+

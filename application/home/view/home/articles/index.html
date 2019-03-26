@@ -1,0 +1,23 @@
+{include file="home/header" title="$articleTitle"/}
+<style type="text/css">
+	
+	img{
+		width: 100%;
+	}
+</style>
+
+	<div class="n-content">
+		{:htmlspecialchars_decode($articleContent)}
+	</div>
+
+
+	<div class="sub">
+	    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+	    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+	    <!-- <div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div>  -->
+	    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+	</div>
+
+</body></html>
+
+

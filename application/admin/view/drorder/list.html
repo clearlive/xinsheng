@@ -1,0 +1,73 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/drorder/drorder.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<div class="wst-toolbar">
+
+
+
+
+<br/>
+订单编号：	<select name="isres" id="isres" class="j-ipt">
+				<option value="0">默认不选</option>
+				<option value="1">已兑换</option>
+				<option value="2">未兑换</option>
+			</select>&nbsp;&nbsp;
+
+用户类型：	<select name="uq" id="uq" class="j-ipt">
+				<option value="0">默认不选</option>
+				<option value="101">运营中心</option>
+				<option value="102">会员单位</option>
+				<option value="103">代理商</option>
+				<option value="104">客户</option>
+			</select>&nbsp;&nbsp;
+
+用户：<input type="text" name="userinfo"  placeholder='用户名称/id/手机/昵称' id="userinfo" class='j-ipt'/>&nbsp;&nbsp;
+
+订单编号：<input type="text" name="orderNo"  placeholder='订单编号' id="orderNo" class='j-ipt'/>&nbsp;&nbsp;
+
+时间：<input type="text" style="margin:0px;vertical-align:baseline;" id="stacerateTime" name="stacerateTime" class="j-ipt" maxLength="20"  />
+      &nbsp;-&nbsp;
+      <input type="text" style="margin:0px;vertical-align:baseline;" id="endcerateTime" name="endcerateTime" class="j-ipt" maxLength="20"  />&nbsp;&nbsp;
+
+   <button class="btn btn-blue" onclick='javascript:loadGrid(0)'>查询</button>
+	<span style="color:red"> 默认为早上7点到23点55分</span>
+   <div style='clear:both'></div>
+
+   <br>
+   <div class="tongji">
+   		<button class="btn btn-blue shuaxin_btn" onclick='javascript:shuaxin_btn(0)'>点击开始刷新</button>
+		<span class="tjspan">总流水：<span class="liushui">...</span>元</span>
+		<span class="tjspan">总手续费：<span class="shouxu">...</span>元</span>
+		<span class="tjspan">总盈亏：<span class="yingkui">...</span>元</span>
+		<span class="tjspan">总兑换：<span class="duihuan">...</span>元</span>
+		<span class="tjspan">总未兑换：<span class="weiduihuan">...</span>元</span>
+		<span class="tjspan">总盈：<span class="yingdan">...</span>元</span>
+		<span class="tjspan">总输：<span class="shudan">...</span>元</span>
+		<span class="tjspan">进行中：<span class="jinxing">...</span>元</span>
+   </div>
+   <br>
+</div>
+<div id="maingrid"></div>
+
+<script src="/static/date/jquery.datetimepicker.js?v={$v}" type="text/javascript"></script>
+
+<link href="/static/date/jquery.datetimepicker.css?v={$v}" rel="stylesheet">
+<script>
+
+$(function(){initGrid();})
+//时间选择器
+$('#stacerateTime').datetimepicker();
+$('#endcerateTime').datetimepicker();
+
+
+var isshuaxin = 0;
+var sxd;
+// if(isshuaxin == 1){
+// 	var sxd = setInterval('shuaxin()', 20000);
+// }
+
+</script>
+{/block}

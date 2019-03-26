@@ -1,0 +1,49 @@
+{extend name="base" /}
+{block name="css"}
+
+{/block}
+{block name="js"}
+
+<script src="__ADMIN__/goodex/goodex.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<form id="editform" autocomplete="off" >
+<table class='wst-form wst-box-top'>
+  
+          
+       
+       <tr>
+          <th>单件运费：</th>
+          <td>
+              <input type="text" class="ipt" id="userScore" name="userScore" value="" />元
+          </td>
+       </tr>
+
+       <tr>
+          <th>没加一件：</th>
+          <td>
+              <input type="text" class="ipt" id="percent" name="percent" value="" />元
+          </td>
+       </tr>
+
+
+     
+  
+
+     <td colspan='2' align='center'>
+       <input type="hidden" name="id" id="userId" class="ipt" value="" />
+       <input type="submit" value="提交" class='btn btn-blue' />
+       <input type="button" onclick="javascript:history.go(-1)" class='btn' value="返回" />
+     </td>
+  </tr>
+</table>
+</form>
+<script>
+ var posturl = "{:url('selectuser')}";
+
+$(function(){editInit()});
+</script>
+
+{/block}
+

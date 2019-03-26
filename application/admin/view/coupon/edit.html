@@ -1,0 +1,59 @@
+{extend name="base" /}
+{block name="js"}
+<script src="__ADMIN__/coupon/coupon.js?v={$v}" type="text/javascript"></script>
+{/block}
+{block name="main"}
+<div class="l-loading" style="display: block" id="wst-loading"></div>
+<form id="cForm" autocomplete="off" >
+    <input type='hidden' id='cid' class='ipt' value="{$data['cid']}"/>
+    <table class='wst-form wst-box-top'>
+        <tr>
+          <th>代金券名称：</th>
+          <td>
+              <input type="text" class="ipt" id="cName" name="cName" value="{$data['cName']?$data['cName']:''}" />
+          </td>
+       </tr>
+
+       <tr>
+          <th>金额：</th>
+          <td>
+              <input type="text" class="ipt" id="cMoney" name="cMoney" value="{$data['cMoney']?$data['cMoney']:''}" />
+              <span>元</span>
+          </td>
+       </tr>
+
+       <tr>
+          <th>满多少使用：</th>
+          <td>
+              <input type="text" class="ipt" id="cUse" name="cUse" value="{$data['cUse']?$data['cUse']:''}" />
+              <span>元</span>
+          </td>
+       </tr>
+       <tr>
+          <th>期限：</th>
+          <td>
+              <input type="text" class="ipt" id="cTime" name="cTime" value="{$data['cTime']?$data['cTime']:''}" />
+              <span>天</span>
+          </td>
+       </tr>
+       <tr>
+          <th>是否使用：</th>
+          <td>
+              
+          <input id="cStatic" name='cStatic' class="ipt wst-checkbox" {if $data['cStatic']==1}checked{/if} value="1" type="checkbox"/><label class="mt-1" for="cStatic"></label>使用
+          </td>
+       </tr>
+        <tr>
+           <td colspan='2' align='center'>
+             <input type="submit" value="提交" class='btn btn-blue' />
+             <input type='button' value='返回' class='btn' onclick='javascript:history.go(-1)'>
+           </td>
+        </tr>
+    </table>
+</form>
+<script>
+
+$(function(){editInit()});
+
+</script>
+{/block}

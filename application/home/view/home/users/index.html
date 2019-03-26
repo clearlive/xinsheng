@@ -1,0 +1,78 @@
+{include file="home/header" title="个人中心"  /}
+
+<style>
+.my_code{
+	vertical-align: top;
+    width: 20%;
+    border: 10px solid #FFE;
+    border-radius: 22px;
+}
+</style>
+<div class="wrapper">
+
+
+    <div class="gezx">
+        <dl class="gface">
+            <dd><a href="javascript:logout();" class="logout">退出 </a> <a href="{:url('editPass')}" class="logout">修改密码  |</a> </dd>
+            <dd><img class="my_code" src="{$users.userPhoto}"></dd>
+            <dd>{$users.userName}</dd>
+            <dd>ID：{$users.userId}</dd>
+        </dl>
+        <ul>
+            <li style="background:none;width:50%"><p>累计获胜</p><p class="ff">{$users.allWin}</p></li>
+            <!-- <li><p>佣金</p><p class="ff">{$yongjin}</p></li> -->
+            <li style="width:50%"><p>余额</p><p class="ff">{$users.userMoney}</p></li>
+        </ul>
+        <div class="cz">
+            <a href="{:url('drrecharge')}">充值</a>
+            <a href="{:url('drcash')}">提现</a>
+        </div>
+        <div class="day">
+            <div>今日参与：{$jinri.canyu}</div>
+            <div>今日获胜：{$jinri.win}</div>
+            <div>今日失败：{$jinri.loss}</div>
+        </div>
+
+    </div>
+
+
+    <div class="gclass">
+        <a href="{:url('dingdan',array('uid'=>$users['userId']))}" class="g1">我的订单</a>
+        <a href="{:url('dingdan',array('uid'=>$users['userId'],'type'=>4))}" class="g2">兑换记录</a>
+        <a href="{:url('kefu')}" class="g3">联系客服</a>
+
+    </div>
+    <div class="gclass">
+        <a href="{:url('qianbao')}" class="g4">我的钱包</a>
+        <a href="{:url('share')}" class="g5">我要赚钱</a>
+        <a href="{:url('home/news/index',array('articleId'=>34))}" class="g6">新手入门</a>
+    </div>
+    <div class="gclass">
+       <a href="{:url('myteam')}" class="g7">我的团队</a> 
+       <a href="{:url('mall/index')}" class="g10">折扣商城</a>
+       <a href="{:url('app')}" class="g11">APP下载</a>
+    </div>
+</div>
+<div class="sub">
+    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+    <!--<div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div> -->
+    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+</div>
+
+
+<script>
+function logout(){
+    if(confirm("退出？")){
+        $.get("{:url('logout')}",function(){
+            alert('已退出');
+            window.location.href="{:url('login')}";
+        })
+    }
+    
+
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,203 @@
+{extend name="home/base" /}
+{block name="title"}用户登录-{:WSTConf('CONF.mallName')}{__block__}{/block}
+{block name="css"}
+<link rel="stylesheet" href="__STATIC__/drhome/css/user_login.css">
+<link rel="stylesheet" href="__STATIC__/drhome/css/login.css">
+<style type="text/css">
+.timeTips {
+    float: right;
+    margin-top: -1.2rem;
+    font-size: 0.2rem;
+    background: #fff;
+    color: #000;
+    padding: 0.1rem;
+    border: 0;
+    border-radius: 0.2rem;
+}
+</style>
+
+{/block}
+
+
+{block name="main"}
+
+
+<div class="m-simpleHeader" id="dvHeader">
+    <a href="javascript:history.back(-1);" data-pro="back" data-back="true" class="m-simpleHeader-back"><i style="color:red" class="ico ico-back"></i></a>
+    <h1 style="color:red">修改密码</h1>
+</div>
+<div class="m-login">
+
+
+    <div class="m-login-tips" id="tips"></div>
+	
+	<form id="reg_form"  method="post" autocomplete="off">
+
+    <div class="zzanniu">
+		<div class="m-login-form w-form">
+			<div class="w-form-item m-login-form-account w-inputBar w-bar">
+				<div class="w-bar-label">
+					<i class="iconfont"></i>
+				</div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+					<input placeholder="手机号" autocapitalize="off" data-pro="input" class="w-bar-input" type="text" name="loginName" value="{$data['userPhone']?$data['userPhone']:''}" id="userPhone">
+				</div>
+			</div>
+
+
+		<!--	<div class="w-form-item m-login-form-account w-inputBar w-bar">
+				<div class="w-bar-label"><i class="iconfont"></i></div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+
+				<input placeholder="请输入手机验证码" autocapitalize="off" id="mobileCode" data-pro="input" class="w-bar-input" type="text" name="mobileCode" style="width:50%;" value=""> 
+
+				<div class="login_pwd">
+			        <button id="timeTips" onclick="getPhoneVerifyCode();return false;"  class="wst-regist-obtain timeTips">获取短信验证码</button>    
+			    </div> 
+
+				</div></div>-->
+			
+			
+
+
+		
+
+
+			{if isset($data['userId'])}
+			<div class="w-form-item m-login-form-account w-inputBar w-bar">
+				<div class="w-bar-label">
+					<i class="iconfont"></i>
+				</div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+					<input placeholder="姓名" autocapitalize="off" data-pro="input" class="w-bar-input" type="text" name="userName" value="{$data['userName']?$data['userName']:''}" id="userName">
+				</div>
+			</div>
+			{/if}
+			<div class="w-form-item m-login-form-password w-inputBar w-bar">
+				<div class="w-bar-label">
+					<i class="iconfont"></i>
+				</div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+					<input placeholder="请输入新密码" autocapitalize="off" data-pro="input" class="w-bar-input" type="loginPwd" name="mima" value="" id="loginPwd">
+				</div>
+			</div>
+			<div class="w-form-item m-login-form-password w-inputBar w-bar">
+				<div class="w-bar-label">
+					<i class="iconfont"></i>
+				</div>
+				<a data-pro="clear" href="javascript:void(0);" class="w-bar-input-clear">×</a>
+				<div class="w-bar-control">
+					<input placeholder="确认密码" autocapitalize="off" data-pro="input" class="w-bar-input" type="reUserPwd" name="mima" value="" id="reUserPwd">
+				</div>
+			</div>
+
+
+			{if isset($data['userId'])}
+				<input type="hidden" name="userId" value="$data['userId']" class="w-bar-input" id="userId">
+			{/if}
+
+			
+			
+			
+
+
+			<div class="m-login-menu" id="autoCmpl" style="display:none;">
+			</div>
+
+
+
+		</div>
+		<div class="m-login-tips-bottom" id="tipsBottom">
+		</div>
+		<div class="m-login-submit">
+			<button class="w-button w-button-main" data-pro="submit" onclick="initedit();return false" id="btnLogin">修改</button>
+		</div>
+
+	</div>
+	
+	</form>
+
+
+
+
+</div>
+
+
+
+
+<button class="w-button w-button-round w-button-backToTop" style="display:none;" id="backToTop" onclick="window.scrollTo(0, 0);">返回顶部</button>
+
+
+
+{/block}
+{block name="js"}
+
+
+<script type="text/javascript">
+	getVerify = function(img){
+		$(img).attr('src',WST.U('admin/index/getVerify','rnd='+Math.random()));
+	}
+
+
+function initedit(isres){
+	
+	        var params = WST.getParams('.w-bar-input');
+	        
+	        var url = WST.U('home/users/passedit');
+	        $.post(url,params,function(data,textStatus){
+	    		var json = WST.toJson(data);
+	    		if(json.status>0){
+	    			WST.msg('修改成功', {icon: 6}, function(){
+	    				history.go(-1);
+	       			});
+	    		}else{
+	    			WST.msg(json.msg, {icon: 5});
+	    		}
+	    		
+	    	});
+	  
+}
+
+var isSend = 1;
+
+function getPhoneVerifyCode(){
+	if(isSend == 0){
+		layer.msg('请稍后...');
+		return;
+	}
+	isSend = 0;
+	var params = 'isres=1&userPhone='+$('#userPhone').val();
+	layer.msg('正在发送短信，请稍后...',{time:600000});
+	$.post(WST.U('home/users/getPhoneVerifyCode'),params,function(data,textStatus){
+		var json = WST.toJson(data);
+		console.log(json);
+		if(json.status!=1){
+			WST.msg(json.msg, {icon: 5});
+			time = 0;
+			isSend = false;
+		}if(json.status==1){
+			WST.msg('短信已发送，请注册查收');
+			time = 120;
+			$('#timeTips').css('width','100px');
+			$('#timeTips').html('获取验证码120');
+			$('#mobileCode').val(json.phoneVerifyCode);
+			var task = setInterval(function(){
+				time--;
+				$('#timeTips').html('获取验证码'+time+"");
+				if(time<=0){
+					isSend = 1;						
+					clearInterval(task);
+					$('#timeTips').html("重新获取验证码");
+				}
+			},1000);
+		}
+	});
+}
+
+</script>
+
+{/block}

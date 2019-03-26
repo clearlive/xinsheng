@@ -1,0 +1,63 @@
+{include file="home/header" title="排行"  /}
+    <div class="wrapper">
+    
+    <div class="tabs0">
+		<li>
+				<a href="{:url('paihang',array('type'=>1))}" {if $type == 1} class="current" {/if}>日榜</a>
+		</li>
+		<li>
+				<a href="{:url('paihang',array('type'=>2))}" {if $type == 2} class="current" {/if}>周榜</a>
+		</li>
+		<li class="litwo">
+				<a href="{:url('paihang',array('type'=>3))}" {if $type == 3} class="current" {/if}>月榜</a>
+		</li>
+	</div>
+        
+        
+		<div class="content">
+			<div class="tab1">
+            
+			<ul class="phb">
+
+                {volist name="list" key="key" id="vo"}
+                {if $key <= 3}
+				<li onclick="window.location.href='{:url('users/dingdan',array('uid'=>$vo['userId']))}'">
+					<p class="face"><img src="{:getuser_photo($vo['userPhoto'])}"></p>
+                    <p class="no">{$key}</p>
+                    <p class="name0">{:substr($vo['userPhone'], 0,3)}****{:substr($vo['userPhone'], -4)}</p>
+                    <p class="danshu">已中奖：{$vo.sumNum}单</p>
+                </li>
+                {/if}
+                {/volist}	                
+            </ul>
+
+            {volist name="list" key="key" id="vo"}
+            {if $key > 3}
+			<dl class="bzb" onclick="window.location.href='{:url('users/dingdan',array('uid'=>$vo['userId']))}'">
+           	  <dt class="d1">{$key}</dt>
+				<dd class="c1"><img src="{:getuser_photo($vo['userPhoto'])}"></dd>
+                <dd class="c2">
+                	<i class="fl">{:substr($vo['userPhone'], 0,3)}****{:substr($vo['userPhone'], -4)}</i>
+                    <i class="fr">已中奖：{$vo.sumNum}单</i>
+                </dd>
+            </dl>
+            {/if}
+            {/volist}
+			   
+
+			               
+		</div>
+        
+    </div>
+    
+    <div class="sub">
+       <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+        <div><a href="{:url('kaijiang')}" class="a2 a_2">助手</a></div>
+        <div><a href="{:url('paihang')}" class="a3 ">排行</a></div>
+        <div><a href="{:url('users/index')}" class="a4 a_4">我的</a></div>
+	</div>
+    
+
+
+
+</div></body></html>

@@ -1,0 +1,134 @@
+{include file="home/header" title="银行卡账户"  /}
+
+
+<style>
+body { background:#f7f7f7; }
+.card_line { background:#ffffff; margin:3% 0; width:100%; float:left; padding:10px 0 30px 0; }
+.card_line form { padding-bottom:30px; float:left; }
+.card_line dl { width:90%; font-size:250%; padding:30px 5% 30px 5%; height:60px; line-height:60px; border-bottom:1px solid #ededed; }
+.card_line dl dt { width:25%; text-align:right; }
+.card_line dl dd { width:75%; }
+.card_line dl dd input { width:100%; height:50px; border:0; color:#b5b5b5; }
+.card_line dl dd input.tell { width:50%;  }
+.card_line dl dd span { float:right; font-size:80%; border:1px solid #f94701; height:58px; line-height:58px; color:#f94701; border-radius:15px; padding:0 30px; }
+.card_line dl dd select { width:100%; height:50px; border:0; color:#b5b5b5; }
+.card_line h1 input { font-size:300%; color:#ffffff; width:90%; margin:3% 5% 0 5%; padding:30px 0; background:#e34044; float:left; -webkit-appearance:none; vertical-align: middle;  border-radius:15px; }
+.card_line p { width:90%; padding:7px 5%; font-size:180%; color:#e34044; }
+</style>
+
+
+	<div class="card_line">
+		<form action='' method='post' onsubmit='return checkform();'>
+        <dl>
+            <dt>持卡人：</dt>
+            <dd><input id="accUser" type="text" name="textfield" value="{$accUser?$accUser:'请输入持卡人姓名'}" onfocus="if (value =='请输入持卡人姓名'){value =''}" onblur="if (value ==''){value='请输入持卡人姓名'}"/></dd>
+        </dl>
+        <dl>
+            <dt>银行：</dt>
+            <dd>
+			<select id='accTargetId' name="select">
+				
+                <option value="0">请选择</option>
+    				{volist name="banks" id="vo"}
+						<option {if isset($accTargetId) && $accTargetId == $vo['bankId']} selected="selected" {/if}  value="{$vo.bankId}">{$vo.bankName}</option>
+					{/volist}
+									
+				               
+			</select>
+            </dd>
+        </dl>
+        <dl>
+            <dt>开户行：</dt>
+            <dd><input type="text" name="textfield" id="address" value="{$address?$address:'输入开户行'}" onfocus="if (value =='输入开户行'){value =''}" onblur="if (value ==''){value='输入开户行'}"/></dd>
+        </dl>
+        <dl>
+            <dt>卡号：</dt>
+            <dd><input type="text" name="textfield" id="accNo" value="{$accNo?$accNo:'请输入16或19位银行卡号'}" onfocus="if (value =='请输入16或19位银行卡号'){value =''}" onblur="if (value ==''){value='请输入16或19位银行卡号'}"/></dd>
+        </dl>
+        
+		
+        <h1><input type="submit" name="button" id="button" value="保存" /></h1>
+        </form>
+        <p>注：</p>
+        <p>1.如果你不知道开户行，请拨打卡所属客户电话进行查询。</p>
+        <p>2.仅支持借记卡，不支持信用卡</p>
+    </div>	
+
+	<div class="sub">
+	    <div><a href="{:url('home/index/index')}" class="a1 a_1">首页</a></div>
+	    <div><a href="{:url('index/kaijiang')}" class="a2 a_2">助手</a></div>
+	    <div><a href="{:url('index/paihang')}" class="a3 a_3">排行</a></div>
+	    <div><a href="{:url('users/index')}" class="a4 ">我的</a></div>
+	</div>
+
+
+	<script>
+	var mycard_url="{:url('index')}";
+    var mycard_add_url="{:url('')}";
+    var targetId = 0;
+    var id = 0;
+    {if isset($targetId)}
+        targetId = "{$targetId}"
+        id = "{$id}"
+    {/if}
+	function checkform(){
+		var accUser=$('#accUser').val();
+		if(accUser=='请输入持卡人姓名'){
+			alert('请输入持卡人姓名');
+			return false;
+		}
+		
+		var accTargetId=$('#accTargetId').val();
+		if(accTargetId=='0'){
+			alert('请选择银行');
+			return false;
+		}
+		var address=$('#address').val();
+		if(address=='输入开户行'){
+			alert('请输入开户行');
+			return false;
+		}
+		
+		var accNo=$('#accNo').val();
+		if(accNo=='请输入16或19位银行卡号'){
+			alert('请输入银行卡号');
+			return false;
+		}
+		
+		var phone_code=$('#phone_code').val();
+		if(phone_code=='请输入短信验证码'){
+			alert('请输入短信验证码');
+			return false;
+		}
+		
+		var data={
+			accUser:accUser,
+			accTargetId:accTargetId,
+			address:address,
+			accNo:accNo,
+			targetId:targetId,
+			id:id,
+			targetType:1,
+		};
+		
+		
+		
+		$.post(mycard_add_url,data,function(msg){
+			if(msg.status==1){
+                alert('操作成功');
+                window.location.href=mycard_url;
+            }else{
+                alert(msg.msg);
+            }
+		});
+		return false;
+	}
+	
+
+
+	
+</script>
+
+
+</body></html>
+
